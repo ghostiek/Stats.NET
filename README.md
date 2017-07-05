@@ -1,5 +1,6 @@
 # Stats.NET
 A Statistics library written in C#
+
 I'll be adding more distributions down the line, so far the ones I do have will be documented in the Wiki
 
 ## TODO
