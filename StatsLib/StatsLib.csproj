@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{DF0B7FAA-9587-41DB-AED0-696A06F498A5}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>StatsLib</RootNamespace>
+    <AssemblyName>StatsLib</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CsvHelper, Version=2.0.0.0, Culture=neutral, PublicKeyToken=8c4959082be5c823, processorArchitecture=MSIL">
+      <HintPath>..\packages\CsvHelper.2.16.3.0\lib\net45\CsvHelper.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Attributes\ProbabilityAttribute.cs" />
+    <Compile Include="Distributions\Continuous\ChiSquared.cs" />
+    <Compile Include="Interfaces\INormal.cs" />
+    <Compile Include="Tables\Classes\ChiSquaredTable.cs" />
+    <Compile Include="Distributions\Discrete\Binomial.cs" />
+    <Compile Include="Distributions\Continuous\Normal.cs" />
+    <Compile Include="Distributions\Discrete\Poisson.cs" />
+    <Compile Include="Distributions\Discrete\Geometric.cs" />
+    <Compile Include="Distributions\Continuous\Exponential.cs" />
+    <Compile Include="Distributions\Continuous\Gamma.cs" />
+    <Compile Include="Distributions\MGF.cs" />
+    <Compile Include="Hypergeometric.cs" />
+    <Compile Include="Distributions\Discrete\NegativeBinomial.cs" />
+    <Compile Include="Distributions\Continuous\Uniform.cs" />
+    <Compile Include="Interfaces\IChiSquared.cs" />
+    <Compile Include="Mapping\ChiSquaredTableMap.cs" />
+    <Compile Include="Utility\Stats.cs" />
+    <Compile Include="Interfaces\IDistribution.cs" />
+    <Compile Include="Distributions\ParameterLimits.cs" />
+    <Compile Include="Interfaces\IProbability.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <None Include="packages.config" />
+    <None Include="Tables\CSVs\ChiSquaredTable.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
