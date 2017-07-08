@@ -7,6 +7,9 @@ namespace StatsLib.Distributions
     class Poisson : IDistribution, IProbability, ISpecialGamma
     {
         #region Property
+        /// <summary>
+        /// This parameter can never be less than or equal to 0
+        /// </summary>
         public double Lambda { get; private set; }
         #endregion
 

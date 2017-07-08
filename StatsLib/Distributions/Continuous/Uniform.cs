@@ -3,10 +3,12 @@ using System;
 
 namespace StatsLib.Distributions
 {
+
     public class Uniform : IDistribution, IProbability, IUniform
     {
         #region Properties and Backing Field
         private double upperBound;
+
         /// <summary>
         /// First Bound
         /// </summary>

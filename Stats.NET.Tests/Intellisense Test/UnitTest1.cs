@@ -17,6 +17,8 @@ namespace Stats.NET.Tests.Intellisense_Test
             var chi = new ChiSquared(3);
             var dof = chi.DegreeOfFreedom;
 
+            var uni = new Uniform(1,3);
+
 
         }
     }
