@@ -7,14 +7,48 @@ using System.IO;
 
 namespace StatsLib.Distributions
 {
-    public class ChiSquared : ParameterLimits, IDistribution, IProbability, IChiSquared
+    public class ChiSquared : IDistribution, IProbability, IChiSquared
     {
+        #region Properties and Backing Field
+
+        /// <summary>
+        /// Degree of Freedom of ChiSquared Distribution
+        /// Always Population - 1
+        /// </summary>
+        public uint DegreeOfFreedom
+        {
+            get
+            {
+                return PopulationSize - 1;
+            }
+
+        }
+
+        private uint populationSize;
+
+        /// <summary>
+        /// The amount of individuals in the sample
+        /// </summary>
+        public uint PopulationSize
+        {
+            get
+            {
+                return populationSize;
+            }
+            private set
+            {
+                if (value <= 1) throw new ArgumentOutOfRangeException("Population Size cannot be smaller than or equal to 1");
+                else populationSize = value;
+            }
+        }
+        #endregion
 
         public ChiSquared(uint populationSize)
         {
             PopulationSize = populationSize;
         }
 
+        #region IDistribution Methods
         public double GetMean()
         {
             return DegreeOfFreedom;
@@ -39,7 +73,9 @@ namespace StatsLib.Distributions
         {
             throw new NotImplementedException();
         }
+        #endregion
 
+        #region GetProbability Methods
         public double GetProbabilityLessThan(double input)
         {
             throw new NotImplementedException();
@@ -58,8 +94,14 @@ namespace StatsLib.Distributions
         {
             return 1 - GetProbabilityLessThanOrEqual(input);
         }
+        #endregion
 
-
+        #region IChiSquared Methods
+        /// <summary>
+        /// Used to get the Chi Squared Statistic
+        /// </summary>
+        /// <param name="probability"></param>
+        /// <returns></returns>
         public double GetChiSquaredStatistic(double probability)
         {
             //This grabs the Probabilities and its ChiSquared Statistics from the row
@@ -70,6 +112,11 @@ namespace StatsLib.Distributions
             return ChiSquaredStatistic;
         }
 
+        /// <summary>
+        /// Returns a DataTable depending on your degree of freedom
+        /// Useful if you want to get multiple Chi Squared Statistics
+        /// </summary>
+        /// <returns></returns>
         public ChiSquaredTable GetChiSquaredTable()
         {
             //Gets Path to CSV
@@ -94,6 +141,7 @@ namespace StatsLib.Distributions
                 }
                 return record;
             }
-        }       
+        }
+        #endregion
     }
 }

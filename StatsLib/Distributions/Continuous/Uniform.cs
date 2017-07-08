@@ -3,13 +3,40 @@ using System;
 
 namespace StatsLib.Distributions
 {
-    public class Uniform : ParameterLimits, IDistribution, IProbability
+    public class Uniform : IDistribution, IProbability, IUniform
     {
+        #region Properties and Backing Field
+        private double upperBound;
+        /// <summary>
+        /// First Bound
+        /// </summary>
+        public double LowerBound { get; private set; }
+
+        /// <summary>
+        /// Second Bound
+        /// Needs to be larger than LowerBound
+        /// </summary>
+        public double UpperBound
+        {
+            get
+            {
+                return upperBound;
+            }
+            private set
+            {
+                if (value < LowerBound) throw new ArgumentException("The Upperbound parameter was smaller than the Lowerbound one");
+                else upperBound = value;
+            }
+        }
+        #endregion
+
         public Uniform(double lowerBound, double upperBound)
         {
             LowerBound = lowerBound;
             UpperBound = upperBound;
         }
+
+        #region IDistribution Methods
         public double GetMean()
         {
             return (LowerBound + UpperBound) / 2;
@@ -34,7 +61,9 @@ namespace StatsLib.Distributions
         {
             throw new NotImplementedException();
         }
+        #endregion
 
+        #region IProbability Methods
         public double GetProbabilityLessThan(double input)
         {
             double solution = 0;
@@ -59,6 +88,7 @@ namespace StatsLib.Distributions
         {
             return 1 - GetProbabilityLessThanOrEqual(input);
         }
+        #endregion
 
     }
 }

@@ -4,13 +4,18 @@ using System;
 
 namespace StatsLib.Distributions
 {
-    class Poisson : ParameterLimits, IDistribution, IProbability
+    class Poisson : IDistribution, IProbability, ISpecialGamma
     {
+        #region Property
+        public double Lambda { get; private set; }
+        #endregion
+
         public Poisson(double lambda)
         {
             Lambda = lambda;
         }
 
+        #region IDistribution Methods
         public double GetMean()
         {
             return Lambda;
@@ -35,7 +40,9 @@ namespace StatsLib.Distributions
         {
             throw new NotImplementedException();
         }
+        #endregion
 
+        #region IProbability Methods
         public double GetProbabilityLessThan(double input)
         {
             if (input < 0) throw new ArgumentException("Parameter cannot be smaller than 0");
@@ -67,7 +74,6 @@ namespace StatsLib.Distributions
         {
             return 1 - GetProbabilityLessThanOrEqual(input);
         }
-
-
+        #endregion
     }
 }

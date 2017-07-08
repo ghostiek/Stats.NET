@@ -4,15 +4,53 @@ using System;
 
 namespace StatsLib.Distributions
 {
-    public class Binomial : ParameterLimits , IDistribution , IProbability
+    public class Binomial : IDistribution , IProbability
     {
- 
+        #region Properties and Backing Fields
+        private double probability;
+
+        /// <summary>
+        /// Needs to be between 0 and 1
+        /// </summary>
+        public double Probability
+        {
+            get
+            {
+                return probability;
+            }
+            private set
+            {
+                if (value >= 0 || value <= 1) throw new ArgumentOutOfRangeException("The number inputted was out of bounds (0-1)");
+                else probability = value;
+            }
+        }
+
+        private uint populationSize;
+
+        /// <summary>
+        /// The amount of individuals in the sample
+        /// </summary>
+        public uint PopulationSize
+        {
+            get
+            {
+                return populationSize;
+            }
+            private set
+            {
+                if (value <= 1) throw new ArgumentOutOfRangeException("Population Size cannot be smaller than or equal to 1");
+                else populationSize = value;
+            }
+        }
+        #endregion
+        
         public Binomial(double probability, uint populationSize)
         {
             Probability = probability;
             PopulationSize = populationSize;
         }
 
+        #region IDistribution Methods
         public double GetMean()
         {
             return Probability * PopulationSize;
@@ -38,7 +76,9 @@ namespace StatsLib.Distributions
         {
             throw new NotImplementedException();
         }
+        #endregion
 
+        #region IProbability Methods
         /// <summary>
         /// Gets Probability there are less than or equal to a given amount of successes
         /// </summary>
@@ -86,5 +126,6 @@ namespace StatsLib.Distributions
         {
             return 1 - GetProbabilityLessThanOrEqual(input);
         }
+        #endregion
     }
 }

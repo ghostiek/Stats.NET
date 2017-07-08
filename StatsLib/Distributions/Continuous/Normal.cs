@@ -3,8 +3,32 @@ using System;
 
 namespace StatsLib.Distributions
 {
-    public class Normal : ParameterLimits, IDistribution, IProbability, INormal
+    public class Normal : IDistribution, IProbability, INormal
     {
+        #region Properties and Backing Field
+        private double sigma;
+        /// <summary>
+        /// Also known as Mean or Average
+        /// </summary>
+        public double Mu { get; private set; }
+
+        /// <summary>
+        /// Also known as Variance
+        /// Cannot be negative
+        /// </summary>
+        public double Sigma
+        {
+            get
+            {
+                return sigma;
+            }
+            private set
+            {
+                if (value < 0) throw new ArgumentOutOfRangeException("The variance was negative");
+                else sigma = value;
+            }
+        }
+        #endregion
 
         public Normal(double mean, double variance)
         {
@@ -12,6 +36,7 @@ namespace StatsLib.Distributions
             Sigma = variance;
         }
 
+        #region IDistribution Methods
         public double GetMean()
         {
             return Mu;
@@ -35,7 +60,16 @@ namespace StatsLib.Distributions
         {
             throw new NotImplementedException();
         }
+        #endregion
 
+        #region INormal Methods
+        public double ZScore(double input)
+        {
+            return (input - Mu) / Math.Sqrt(Sigma);
+        }
+        #endregion
+
+        #region IProbability Methods
         public double GetProbabilityLessThan(double input)
         {
             //Formula taken from https://www.johndcook.com/blog/csharp_phi/
@@ -77,10 +111,6 @@ namespace StatsLib.Distributions
         {
             return 1 - GetProbabilityLessThanOrEqual(input);
         }
-
-        public double ZScore(double input)
-        {
-            return (input - Mu) / Math.Sqrt(Sigma);
-        }
+        #endregion      
     }
 }

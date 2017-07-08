@@ -4,13 +4,39 @@ using System;
 
 namespace StatsLib.Distributions
 {
-    class NegativeBinomial : ParameterLimits, IDistribution, IProbability
+    class NegativeBinomial : IDistribution, IProbability, INegativeBinomial
     {
+        #region Properties and Backing Field
+        private double probability;
+        /// <summary>
+        /// Needs to be between 0 and 1
+        /// </summary>
+        public double Probability
+        {
+            get
+            {
+                return probability;
+            }
+            private set
+            {
+                if (value >= 0 || value <= 1) throw new ArgumentOutOfRangeException("The number inputted was out of bounds (0-1)");
+                else probability = value;
+            }
+        }
+
+        /// <summary>
+        /// Number of failures until the experiment is stopped
+        /// </summary>
+        public uint FailureNumber { get; private set; }
+        #endregion
+
         public NegativeBinomial(double probability, uint failureNumber)
         {
             Probability = probability;
             FailureNumber = failureNumber;
         }
+
+        #region IDistribution Methods
         public double GetMean()
         {
             return FailureNumber / Probability;
@@ -35,7 +61,9 @@ namespace StatsLib.Distributions
         {
             throw new NotImplementedException();
         }
+        #endregion
 
+        #region IProbability Methods
         /// <summary>
         /// X = number of trials until Rth success
         /// </summary>
@@ -70,6 +98,6 @@ namespace StatsLib.Distributions
         {
             return 1 - GetProbabilityLessThanOrEqual(input);
         }
-
+        #endregion
     }
 }

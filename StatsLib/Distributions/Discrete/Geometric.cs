@@ -4,13 +4,33 @@ using System;
 
 namespace StatsLib.Distributions
 {
-    class Geometric : ParameterLimits, IDistribution, IProbability
+    class Geometric : IDistribution, IProbability, IGeometric
     {
+        #region Property and Backing Field
+        private double probability;
+        /// <summary>
+        /// Needs to be between 0 and 1
+        /// </summary>
+        public double Probability
+        {
+            get
+            {
+                return probability;
+            }
+            private set
+            {
+                if (value >= 0 || value <= 1) throw new ArgumentOutOfRangeException("The number inputted was out of bounds (0-1)");
+                else probability = value;
+            }
+        }
+        #endregion
+
         public Geometric(double probability)
         {
             Probability = probability;
         }
 
+        #region IDistribution Methods
         public double GetMean()
         {
             return 1 / Probability;
@@ -35,7 +55,9 @@ namespace StatsLib.Distributions
         {
             throw new NotImplementedException();
         }
+        #endregion
 
+        #region IProbability Methods
         public double GetProbabilityLessThan(double input)
         {
             if (input < 1) throw new ArgumentOutOfRangeException("Parameter cannot be smaller than 1");
@@ -67,7 +89,7 @@ namespace StatsLib.Distributions
         {
             return 1 - GetProbabilityLessThanOrEqual(input);
         }
-
+        #endregion
 
     }
 }

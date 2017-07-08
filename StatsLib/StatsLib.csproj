@@ -44,7 +44,13 @@
   <ItemGroup>
     <Compile Include="Attributes\ProbabilityAttribute.cs" />
     <Compile Include="Distributions\Continuous\ChiSquared.cs" />
+    <Compile Include="Interfaces\IBinomial.cs" />
+    <Compile Include="Interfaces\IGamma.cs" />
+    <Compile Include="Interfaces\IGeometric.cs" />
+    <Compile Include="Interfaces\INegativeBinomial.cs" />
     <Compile Include="Interfaces\INormal.cs" />
+    <Compile Include="Interfaces\ISpecialGamma.cs" />
+    <Compile Include="Interfaces\IUniform.cs" />
     <Compile Include="Tables\Classes\ChiSquaredTable.cs" />
     <Compile Include="Distributions\Discrete\Binomial.cs" />
     <Compile Include="Distributions\Continuous\Normal.cs" />

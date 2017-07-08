@@ -3,12 +3,33 @@ using System;
 
 namespace StatsLib.Distributions
 {
-    public class Exponential : ParameterLimits, IDistribution, IProbability
+    public class Exponential : IDistribution, IProbability, ISpecialGamma
     {
+        #region Property and Backing Field
+        private double lambda;
+        /// <summary>
+        /// This parameter can never be less than or equal to 0
+        /// </summary>
+        public double Lambda
+        {
+            get
+            {
+                return lambda;
+            }
+            private set
+            {
+                if (value <= 0) throw new ArgumentOutOfRangeException("Lambda cannot be smaller than or equal to 0");
+                else lambda = value;
+            }
+        }
+        #endregion
+
         public Exponential(double lambda)
         {
             Lambda = lambda;
         }
+
+        #region IDistribution Methods
         public double GetMean()
         {
             return 1 / Lambda;
@@ -33,7 +54,9 @@ namespace StatsLib.Distributions
         {
             throw new NotImplementedException();
         }
+        #endregion
 
+        #region GetProbability Methods
         public double GetProbabilityLessThan(double input)
         {
             if (input < 0) throw new ArgumentOutOfRangeException("Input cannot be smaller than 0");
@@ -54,6 +77,7 @@ namespace StatsLib.Distributions
         {
             return 1 - GetProbabilityLessThanOrEqual(input);
         }
+        #endregion
 
     }
 }

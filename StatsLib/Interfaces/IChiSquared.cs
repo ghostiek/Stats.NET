@@ -2,8 +2,19 @@
 
 namespace StatsLib.Interfaces
 {
-    interface IChiSquared
+    public interface IChiSquared
     {
+        /// <summary>
+        /// The amount of individuals in the sample
+        /// </summary>
+        uint PopulationSize { get; }
+
+        /// <summary>
+        /// Degree of Freedom of ChiSquared Distribution
+        /// Always Population - 1
+        /// </summary>
+        uint DegreeOfFreedom { get; }
+
         /// <summary>
         /// Used to get the Chi Squared Statistic
         /// </summary>
