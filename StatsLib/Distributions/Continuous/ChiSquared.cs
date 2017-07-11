@@ -4,6 +4,7 @@ using StatsLib.Mapping;
 using StatsLib.Tables.Classes;
 using System;
 using System.IO;
+using System.Linq;
 
 namespace StatsLib.Distributions
 {
@@ -78,7 +79,12 @@ namespace StatsLib.Distributions
         #region GetProbability Methods
         public double GetProbabilityLessThan(double input)
         {
-            throw new NotImplementedException();
+            var table = GetChiSquaredTable().GetDictionary();
+
+            //Fix this. This is just giving them a pass for 10% error
+            var prob = table.FirstOrDefault(x => input >= x.Value - x.Value * 0.1 && input <= x.Value + x.Value * 0.1).Key;
+
+            return prob;
         }
 
         public double GetProbabilityLessThanOrEqual(double input)

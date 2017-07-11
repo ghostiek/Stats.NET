@@ -44,6 +44,8 @@
   <ItemGroup>
     <Compile Include="Attributes\ProbabilityAttribute.cs" />
     <Compile Include="Distributions\Continuous\ChiSquared.cs" />
+    <Compile Include="Distributions\Discrete\Bernouilli.cs" />
+    <Compile Include="Distributions\Discrete\Rademacher.cs" />
     <Compile Include="Interfaces\IBinomial.cs" />
     <Compile Include="Interfaces\IGamma.cs" />
     <Compile Include="Interfaces\IGeometric.cs" />

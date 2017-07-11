@@ -44,7 +44,7 @@ namespace StatsLib.Tables.Classes
         [Probability(0.001)]
         public double P11 { get; set; }
 
-        public Dictionary<double, double> Row { get; set; }
+        private Dictionary<double, double> Row { get; set; }
 
 
         public Dictionary<double, double> GetDictionary()

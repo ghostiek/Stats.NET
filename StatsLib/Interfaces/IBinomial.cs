@@ -10,6 +10,6 @@
         /// <summary>
         /// The amount of individuals in the sample
         /// </summary>
-        double PopulationSize { get; }
+        uint PopulationSize { get; }
     }
 }

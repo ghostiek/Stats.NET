@@ -52,8 +52,10 @@
   <ItemGroup>
     <Compile Include="Binomial Tests\BinomialProbabilityTesting.cs" />
     <Compile Include="Binomial Tests\BinomialTesting.cs" />
-    <Compile Include="Intellisense Test\UnitTest1.cs" />
+    <Compile Include="Binomial Tests\BernouilliTest.cs" />
+    <Compile Include="Intellisense Test\IntellisenseTest.cs" />
     <Compile Include="Normal Tests\NormalTesting.cs" />
+    <Compile Include="Table Tests\ChiSquaredProbAndStat.cs" />
     <Compile Include="Utility Tests\ExtensionsTesting.cs" />
     <Compile Include="Table Tests\ChiSquaredTableTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

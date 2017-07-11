@@ -6,7 +6,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace Stats.NET.Tests.Intellisense_Test
 {
     [TestClass]
-    public class UnitTest1
+    public class IntellisenseTest
     {
         [TestMethod]
         public void TestMethod1()

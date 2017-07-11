@@ -4,7 +4,7 @@ using System;
 
 namespace StatsLib.Distributions
 {
-    public class Binomial : IDistribution , IProbability
+    public class Binomial : IDistribution , IProbability, IBinomial
     {
         #region Properties and Backing Fields
         private double probability;
@@ -20,7 +20,7 @@ namespace StatsLib.Distributions
             }
             private set
             {
-                if (value >= 0 || value <= 1) throw new ArgumentOutOfRangeException("The number inputted was out of bounds (0-1)");
+                if (value < 0 || value > 1) throw new ArgumentOutOfRangeException("The number inputted was out of bounds (0-1)");
                 else probability = value;
             }
         }
@@ -38,7 +38,7 @@ namespace StatsLib.Distributions
             }
             private set
             {
-                if (value <= 1) throw new ArgumentOutOfRangeException("Population Size cannot be smaller than or equal to 1");
+                if (value < 1) throw new ArgumentOutOfRangeException("Population Size cannot be smaller than 1");
                 else populationSize = value;
             }
         }
