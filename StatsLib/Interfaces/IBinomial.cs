@@ -11,5 +11,6 @@
         /// The amount of individuals in the sample
         /// </summary>
         uint PopulationSize { get; }
+
     }
 }

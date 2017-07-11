@@ -64,7 +64,7 @@ namespace StatsLib.Distributions
             double solution = 0;
             for (int i = 0; i < input; i++)
             {
-                solution += Stats.GetExactGeometricProbability(Probability, i);
+                solution += GetExactGeometricProbability(Probability, i);
             }
             return solution;
         }
@@ -75,7 +75,7 @@ namespace StatsLib.Distributions
             double solution = 0;
             for (int i = 0; i <= input; i++)
             {
-                solution += Stats.GetExactGeometricProbability(Probability, i);
+                solution += GetExactGeometricProbability(Probability, i);
             }
             return solution;
         }
@@ -91,5 +91,17 @@ namespace StatsLib.Distributions
         }
         #endregion
 
+        #region IGeometric Methods
+        /// <summary>
+        /// Method to get the exact probability of an event occuring, rather than the sum of a number of events
+        /// </summary>
+        /// <param name="probability"></param>
+        /// <param name="number"></param>
+        /// <returns></returns>
+        public double GetExactGeometricProbability(double probability, double number)
+        {
+            return Math.Pow(1 - probability, number - 1) * probability;
+        }
+        #endregion
     }
 }

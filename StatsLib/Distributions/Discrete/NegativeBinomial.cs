@@ -74,7 +74,7 @@ namespace StatsLib.Distributions
             double solution = 0;
             for (int i = 0; i < input; i++)
             {
-                solution += Stats.GetExactNegativeBinomialProbability(Probability, FailureNumber, i);
+                solution += GetExactNegativeBinomialProbability(Probability, FailureNumber, i);
             }
             return solution;
         }
@@ -84,7 +84,7 @@ namespace StatsLib.Distributions
             double solution = 0;
             for (int i = 0; i <= input; i++)
             {
-                solution += Stats.GetExactNegativeBinomialProbability(Probability, FailureNumber, i);
+                solution += GetExactNegativeBinomialProbability(Probability, FailureNumber, i);
             }
             return solution;
         }
@@ -97,6 +97,13 @@ namespace StatsLib.Distributions
         public double GetProbabilityMoreThan(double input)
         {
             return 1 - GetProbabilityLessThanOrEqual(input);
+        }
+        #endregion
+
+        #region Negative Binomial Methods
+        public double GetExactNegativeBinomialProbability(double probability, uint number, double input)
+        {
+            return Stats.BinomialCoef(input - 1, number - 1) * Math.Pow(probability, number) * Math.Pow(1 - probability, input - number);
         }
         #endregion
     }

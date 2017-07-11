@@ -11,19 +11,17 @@ namespace StatsLib.Extensions
             return val * Factorial(val - 1);
         }
 
+        /// <summary>
+        /// Gets the number of outcomes depending on the parameters
+        /// </summary>
+        /// <remarks>Although this seems like it should belong in the Binomial Class and the IBinomial Interface
+        /// Getting the number of outcomes is used in many more distributions and thus belongs here as a Utility Method</remarks>
+        /// <param name="successes"></param>
+        /// <param name="size"></param>
+        /// <returns></returns>
         public static double BinomialCoef(double successes, double size)
         {
             return size.Factorial() / (successes.Factorial() * (size - successes).Factorial());
-        }
-      
-        public static double GetExactGeometricProbability(double probability, double number)
-        {
-            return Math.Pow(1 - probability, number - 1) * probability;
-        }
-
-        public static double GetExactNegativeBinomialProbability(double probability, uint number, double input)
-        {
-            return BinomialCoef(input - 1, number - 1) * Math.Pow(probability, number) * Math.Pow(1 - probability, input - number);
         }
     }
 }
