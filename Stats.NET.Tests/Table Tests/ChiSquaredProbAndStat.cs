@@ -2,7 +2,7 @@
 using StatsLib.Distributions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Stats.NET.Tests.Table_Tests
+namespace StatsLib.TableTests
 {
     [TestClass]
     public class ChiSquaredProbAndStat

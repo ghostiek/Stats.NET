@@ -33,7 +33,7 @@ namespace StatsLibTests
 
                 var csv = new CsvReader(Reader);
 
-                csv.Configuration.RegisterClassMap<ChiSquaredTableMap>();
+                //csv.Configuration.RegisterClassMap<ChiSquaredTableMap>();
 
                 ChiSquaredTable record = null;
                 //Value #1 = DoF

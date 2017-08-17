@@ -56,6 +56,7 @@
     <Compile Include="Intellisense Test\IntellisenseTest.cs" />
     <Compile Include="Normal Tests\NormalTesting.cs" />
     <Compile Include="Table Tests\ChiSquaredProbAndStat.cs" />
+    <Compile Include="Utility Tests\BasicUtilityTesting.cs" />
     <Compile Include="Utility Tests\ExtensionsTesting.cs" />
     <Compile Include="Table Tests\ChiSquaredTableTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

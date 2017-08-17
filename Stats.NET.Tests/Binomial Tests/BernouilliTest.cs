@@ -2,7 +2,7 @@
 using StatsLib.Distributions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Stats.NET.Tests.Binomial_Tests
+namespace StatsLib.BinomialTests
 {
     [TestClass]
     public class BernouilliTest

@@ -3,7 +3,7 @@ using StatsLib.Tables.Classes;
 
 namespace StatsLib.Mapping
 {
-    public sealed class ChiSquaredTableMap : CsvClassMap<ChiSquaredTable>
+    internal sealed class ChiSquaredTableMap : CsvClassMap<ChiSquaredTable>
     {
         public ChiSquaredTableMap()
         {

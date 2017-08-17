@@ -49,6 +49,7 @@
     <Compile Include="Interfaces\IBinomial.cs" />
     <Compile Include="Interfaces\IGamma.cs" />
     <Compile Include="Interfaces\IGeometric.cs" />
+    <Compile Include="Interfaces\IMode.cs" />
     <Compile Include="Interfaces\INegativeBinomial.cs" />
     <Compile Include="Interfaces\INormal.cs" />
     <Compile Include="Interfaces\ISpecialGamma.cs" />
@@ -66,6 +67,7 @@
     <Compile Include="Distributions\Continuous\Uniform.cs" />
     <Compile Include="Interfaces\IChiSquared.cs" />
     <Compile Include="Mapping\ChiSquaredTableMap.cs" />
+    <Compile Include="Utility\Mode.cs" />
     <Compile Include="Utility\Stats.cs" />
     <Compile Include="Interfaces\IDistribution.cs" />
     <Compile Include="Interfaces\IProbability.cs" />

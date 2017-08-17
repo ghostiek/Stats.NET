@@ -3,7 +3,7 @@ using StatsLib.Distributions;
 using StatsLib.Interfaces;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Stats.NET.Tests.Intellisense_Test
+namespace StatsLib.IntellisenseTest
 {
     [TestClass]
     public class IntellisenseTest
@@ -17,9 +17,13 @@ namespace Stats.NET.Tests.Intellisense_Test
             var chi = new ChiSquared(3);
             var dof = chi.DegreeOfFreedom;
 
-            var uni = new Uniform(1,3);
+            var uni = new Uniform(1, 3);
+        }
 
-
+        [TestMethod]
+        public void TestMethod2()
+        {
+            //StatsLib.Mapping.ChiSquaredTableMap map = new StatsLib.Mapping.ChiSquaredTableMap();
         }
     }
 }
