@@ -13,12 +13,25 @@ namespace StatsLibTests.BasicUtility
         public List<double> li = new List<double>() { 1, 2, 3, 4, 5 };
 
         [TestMethod]
-        public void Mean()
+        public void ArithmeticMean()
         {
             var mean = Stats.ArithmeticMean(li);
             Assert.AreEqual(3, mean);
         }
 
+        [TestMethod]
+        public void GeometricMean()
+        {
+            var mean = Stats.GeometricMean(li);
+            Assert.AreEqual(2.605, Math.Round(mean, 3));
+        }
+
+        [TestMethod]
+        public void HarmonicMean()
+        {
+            var mean = Stats.HarmonicMean(li);
+            Assert.AreEqual(300.0/137, mean);
+        }
 
         [TestMethod]
         public void SD()
@@ -63,7 +76,6 @@ namespace StatsLibTests.BasicUtility
             var mode = Stats.Mode(li);
             Assert.AreEqual(expectedMode.Frequency, mode.Frequency);
             CollectionAssert.AreEqual(expectedMode.Modes.ToList(), mode.Modes.ToList());
-
         }
 
     }

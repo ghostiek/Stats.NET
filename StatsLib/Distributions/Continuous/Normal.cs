@@ -1,5 +1,6 @@
 ﻿using StatsLib.Interfaces;
 using System;
+using System.Collections.Generic;
 
 namespace StatsLib.Distributions
 {
@@ -67,6 +68,7 @@ namespace StatsLib.Distributions
         {
             return (input - Mu) / Math.Sqrt(Sigma);
         }
+
         #endregion
 
         #region IProbability Methods

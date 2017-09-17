@@ -1,4 +1,6 @@
-﻿namespace StatsLib.Interfaces
+﻿using System.Collections.Generic;
+
+namespace StatsLib.Interfaces
 {
     interface INormal
     {

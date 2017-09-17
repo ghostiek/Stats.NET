@@ -1,13 +1,38 @@
 ﻿using System;
 using StatsLib.Utility;
 using System.Collections.Generic;
-using System.Linq;
+using System.Linq; 
 
 namespace StatsLib.Extensions
 {
     public static class Stats
     {
+        /// <summary>
+        /// Returns the Geometric Mean
+        /// </summary>
+        /// <param name="nums"></param>
+        /// <returns></returns>
+        public static double GeometricMean(IEnumerable<double> nums) => Math.Pow(nums.Aggregate((a, b) => a * b), 1.0 / nums.Count());
+
+        /// <summary>
+        /// Returns the Harmonic Mean
+        /// </summary>
+        /// <param name="nums"></param>
+        /// <returns></returns>
+        public static double HarmonicMean(IEnumerable<double> nums) => nums.Count() / (nums.Sum(x => 1 / x));
+
+        /// <summary>
+        /// Returns the Arithmetic mean, the most commonly used average
+        /// </summary>
+        /// <param name="nums"></param>
+        /// <returns></returns>
         public static double ArithmeticMean(IEnumerable<double> nums) => nums.Sum() / nums.Count();
+
+        /// <summary>
+        /// Returns the Variance of the IEnumerable
+        /// </summary>
+        /// <param name="nums"></param>
+        /// <returns></returns>
         public static double Variance(IEnumerable<double> nums)
         {
             //Saving it here rather than finding it again every loop
@@ -15,9 +40,15 @@ namespace StatsLib.Extensions
             return nums.Sum(x => Math.Pow(x - mean, 2)) / nums.Count();
 
         }
+
+        /// <summary>
+        /// Returns the Standard Deviation of the IEnumerable
+        /// </summary>
+        /// <param name="nums"></param>
+        /// <returns></returns>
         public static double StandardDeviation(IEnumerable<double> nums) => Math.Sqrt(Variance(nums));
         
-        /// <summary>
+        /// <summary>   
         /// Gets the median of the IEnumerable provided. If already sorted you can specify it to make it more performent
         /// </summary>
         /// <param name="nums"></param>
@@ -44,7 +75,11 @@ namespace StatsLib.Extensions
             return ArithmeticMean(middleNums);
         }
 
-
+        /// <summary>
+        /// Returns the Mode of the IEnumerable
+        /// </summary>
+        /// <param name="nums"></param>
+        /// <returns></returns>
         public static Mode Mode(IEnumerable<double> nums)
         {
             //Key is the number of the IEnumerable<double>, Value is the frequency
@@ -68,7 +103,11 @@ namespace StatsLib.Extensions
             return new Mode(modes, maxFreq);
         }
 
-
+        /// <summary>
+        /// Returns the Cumulative Sum. First the sum of the 1st and 2nd element, then its sum with the 3rd etc...
+        /// </summary>
+        /// <param name="nums"></param>
+        /// <returns></returns>
         public static IEnumerable<double> CumSum(IEnumerable<double> nums)
         {
             var cumSum = new List<double>();
@@ -80,7 +119,6 @@ namespace StatsLib.Extensions
             }
             return cumSum;
         }
-
 
         public static double Factorial(this double val)
         {
@@ -101,5 +139,6 @@ namespace StatsLib.Extensions
         {
             return size.Factorial() / (successes.Factorial() * (size - successes).Factorial());
         }
+   
     }
 }
