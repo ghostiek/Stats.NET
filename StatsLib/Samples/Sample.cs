@@ -18,7 +18,8 @@ namespace StatsLib.Samples
 
         public Sample(int from, int to, int size, bool unique = false)
         {
-            if (Math.Abs(to - from) > size && unique) throw new ArgumentOutOfRangeException(
+            if (from > to) throw new ArgumentOutOfRangeException("from", "from is larger than to");
+            if (to - from < size && unique) throw new ArgumentOutOfRangeException(
                     "to", "The interval between from and to is too small. Consider changing the interval, decreasing the size or having replace as true");
 
             //Initializing our List of Values
@@ -43,6 +44,8 @@ namespace StatsLib.Samples
 
         public Sample(double from, double to, int size, bool unique = false)
         {
+            if (from > to) throw new ArgumentOutOfRangeException("from", "from is larger than to");
+
             //Initializing our List of Values
             Values = new List<double>();
 
@@ -50,10 +53,12 @@ namespace StatsLib.Samples
 
             for (int i = 0; i < size; i++)
             {
-                var rngNum = rand.Next((int)from, (int)to + 1) + rand.NextDouble();
+                var rngNum = rand.Next((int)from, (int)to - 1) + rand.NextDouble();
+
+                //This is super unlikely to ever happen considering the precision
                 while (unique && Values.Contains(rngNum))
                 {
-                    rngNum = rand.Next((int)from, (int)to + 1) + rand.NextDouble();
+                    rngNum = rand.Next((int)from, (int)to - 1) + rand.NextDouble();
                 }
                 Values.Add(rngNum);
             }
@@ -61,6 +66,7 @@ namespace StatsLib.Samples
 
         public Sample(int from, int to, int size, IEnumerable<double> weighedProb)
         {
+            if (from > to) throw new ArgumentOutOfRangeException("from", "from is larger than to");
             if (weighedProb.Sum() != 1) throw new ArgumentOutOfRangeException("weightedProb", "Probability IEnumerable doesn't add up to 1");
             if (weighedProb.All(x => x < 0 || x > 1)) throw new ArgumentOutOfRangeException("weightedProb", "Some probabilities are smaller than 0 or larger than 1");
 
@@ -78,7 +84,7 @@ namespace StatsLib.Samples
                 int index = 0;
                 foreach (var prob in weighedProb)
                 {
-                    //Checks to see where the probability landed
+                    //Removes the prob element from rngNum to find out which element the probability landed on
                     rngNum -= prob;
                     //Checks if we've reached the probability yet
                     if (rngNum < 0)
