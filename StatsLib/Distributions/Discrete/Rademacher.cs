@@ -24,9 +24,9 @@ namespace StatsLib.Distributions
             return Math.Sqrt(GetVariance());
         }
 
-        public string GetMGF()
+        public double GetMGF(double t)
         {
-            return "cosh(t)";
+            return Math.Cosh(t);
         }
 
         public string GetPMF()

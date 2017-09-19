@@ -23,8 +23,9 @@
         /// <summary>
         /// Returns the Moment Generating Function
         /// </summary>
+        /// <param name="t"></param>
         /// <returns></returns>
-        string GetMGF();
+        double GetMGF(double t);
 
         /// <summary>
         /// Returns the Probability Mass Function

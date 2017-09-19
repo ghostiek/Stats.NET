@@ -66,10 +66,9 @@ namespace StatsLib.Distributions
             return Math.Sqrt(GetVariance());
         }
 
-        public string GetMGF()
+        public double GetMGF(double t)
         {
-            //May have to be a class to find orders, its doing p much nothing as a string
-            return $"(1-{Probability}+{Probability}*e^t)^{PopulationSize}";
+            return Math.Pow(1 - Probability + Probability * Math.Exp(t), PopulationSize);
         }
 
         public string GetPMF()

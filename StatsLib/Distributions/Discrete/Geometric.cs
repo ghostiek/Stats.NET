@@ -46,9 +46,11 @@ namespace StatsLib.Distributions
             return (1 - Probability) / Math.Pow(Probability, 2);
         }
 
-        public string GetMGF()
+        public double GetMGF(double t)
         {
-            throw new NotImplementedException();
+            if (t >= -Math.Log(1 - Probability))
+                throw new ArgumentOutOfRangeException("t", "t cannot be greater than or equal to -ln(1-p)");
+            return Probability * Math.Exp(t) / (1 - (1 - Probability) * Math.Exp(t));
         }
 
         public string GetPMF()

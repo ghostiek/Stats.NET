@@ -65,9 +65,10 @@ namespace StatsLib.Distributions
             return Math.Sqrt(GetVariance());
         }
 
-        public string GetMGF()
+        public double GetMGF(double t)
         {
-            throw new NotImplementedException();
+            if (t >= 0.5) throw new ArgumentOutOfRangeException("t", "t cannot be smaller than 0.5");
+            return 1 / Math.Pow((1 - 2 * t), DegreeOfFreedom / 2);
         }
 
         public string GetPMF()

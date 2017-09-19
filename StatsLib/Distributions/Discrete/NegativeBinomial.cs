@@ -52,9 +52,10 @@ namespace StatsLib.Distributions
             return Probability * (1 - FailureNumber) / Math.Pow((1 - Probability), 2);
         }
 
-        public string GetMGF()
+        public double GetMGF(double t)
         {
-            throw new NotImplementedException();
+            if (t >= -Math.Log(Probability)) throw new ArgumentOutOfRangeException("t", "t cannot be larger than or equal to -log(Probability)");
+            return Math.Pow((1 - Probability) / (1 - Probability * Math.Exp(t)), FailureNumber);
         }
 
         public string GetPMF()

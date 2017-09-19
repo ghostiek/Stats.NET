@@ -45,9 +45,10 @@ namespace StatsLib.Distributions
             return 1 / Math.Pow(Lambda, 2);
         }
 
-        public string GetMGF()
+        public double GetMGF(double t)
         {
-            throw new NotImplementedException();
+            if (t >= Lambda) throw new ArgumentOutOfRangeException("t", "t cannot be larger or equal to Lambda");
+            return Lambda / (Lambda - t);
         }
 
         public string GetPMF()

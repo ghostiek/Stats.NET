@@ -65,9 +65,9 @@ namespace StatsLib.Distributions
             return Alpha * Beta * Beta;
         }
 
-        public string GetMGF()
+        public double GetMGF(double t)
         {
-            throw new NotImplementedException();
+            return 1 / Math.Pow(1 - t / Beta, Alpha);
         }
 
         public string GetPMF()

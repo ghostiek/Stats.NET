@@ -52,9 +52,9 @@ namespace StatsLib.Distributions
         {
             return Sigma;
         }
-        public string GetMGF()
+        public double GetMGF(double t)
         {
-            throw new NotImplementedException();
+            return Math.Exp(Mu * t + 0.5 * GetVariance() * Math.Pow(t, 2));
         }
 
         public string GetPMF()

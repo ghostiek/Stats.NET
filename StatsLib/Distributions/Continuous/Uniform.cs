@@ -54,9 +54,10 @@ namespace StatsLib.Distributions
             return Math.Pow(UpperBound - LowerBound, 2) / 12;
         }
 
-        public string GetMGF()
+        public double GetMGF(double t)
         {
-            throw new NotImplementedException();
+            if (t == 0) return 1;
+            return (Math.Exp(t * UpperBound) - Math.Exp(t * LowerBound)) / (t * (UpperBound - LowerBound));
         }
 
         public string GetPMF()

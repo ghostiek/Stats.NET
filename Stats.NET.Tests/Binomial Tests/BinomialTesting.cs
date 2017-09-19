@@ -36,13 +36,5 @@ namespace StatsLibTests
 
             Assert.AreEqual(_bin.GetStandardDeviation(), Math.Sqrt(7.5));
         }
-
-        [TestMethod]
-        public void MGFTesting()
-        {
-            var _bin = new Binomial(0.5, 30);
-
-            Assert.AreEqual(_bin.GetMGF(), "(1-0.5+0.5*e^t)^30");
-        }
     }
 }

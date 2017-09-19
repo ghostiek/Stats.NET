@@ -34,9 +34,9 @@ namespace StatsLib.Distributions
             return Lambda;
         }
 
-        public string GetMGF()
+        public double GetMGF(double t)
         {
-            throw new NotImplementedException();
+            return Math.Exp(Lambda * (Math.Exp(t) - 1));
         }
 
         public string GetPMF()
