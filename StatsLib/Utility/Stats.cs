@@ -120,6 +120,7 @@ namespace StatsLib.Extensions
             return cumSum;
         }
 
+
         public static double Factorial(this double val)
         {
             if (val < 0) throw new ArithmeticException("Cannot find factorial of a negative number.");
@@ -139,6 +140,7 @@ namespace StatsLib.Extensions
         {
             return size.Factorial() / (successes.Factorial() * (size - successes).Factorial());
         }
-   
+
+        public static double Range(IEnumerable<double> nums) => nums.Max() - nums.Min();   
     }
 }

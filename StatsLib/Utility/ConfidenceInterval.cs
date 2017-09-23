@@ -10,9 +10,9 @@ namespace StatsLib.Utility
     public class ConfidenceInterval : IMode
     {
         public IEnumerable<double> Modes { get; private set; }
-        public int Frequency { get; private set; }
+        public int? Frequency { get; private set; }
 
-        public ConfidenceInterval(IEnumerable<double> modes, int frequency)
+        public ConfidenceInterval(IEnumerable<double> modes, int? frequency)
         {
             Modes = modes;
             Frequency = frequency;

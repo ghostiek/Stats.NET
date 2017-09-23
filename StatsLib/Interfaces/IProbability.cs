@@ -1,6 +1,6 @@
 ﻿namespace StatsLib.Interfaces
 {
-    interface IProbability
+    public interface IProbability
     {
         /// <summary>
         /// Returns the probability of a certain event happening

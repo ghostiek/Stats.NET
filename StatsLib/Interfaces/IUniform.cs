@@ -1,6 +1,6 @@
 ﻿namespace StatsLib.Interfaces
 {
-    interface IUniform
+    public interface IUniform
     {
         /// <summary>
         /// First Bound

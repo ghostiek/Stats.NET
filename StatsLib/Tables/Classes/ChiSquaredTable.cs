@@ -52,18 +52,16 @@ namespace StatsLib.Tables.Classes
             if (Row != null) return Row;
 
             Row = new Dictionary<double, double>();
-            PropertyInfo[] PropsInfo = typeof(ChiSquaredTable).GetProperties();
+            var PropsInfo = typeof(ChiSquaredTable).GetProperties();
 
-            foreach (var PropInfo in PropsInfo)
+            foreach (var propInfo in PropsInfo)
             {
-                if (PropInfo.CustomAttributes.Count() > 0)
-                {
-                    var PropAttribute = (ProbabilityAttribute)PropInfo.GetCustomAttribute(typeof(ProbabilityAttribute));
+                if (!propInfo.CustomAttributes.Any()) continue;
+                var propAttribute = (ProbabilityAttribute)propInfo.GetCustomAttribute(typeof(ProbabilityAttribute));
 
-                    double Prob = PropAttribute.RelativeProbability;
+                var prob = propAttribute.RelativeProbability;
 
-                    Row.Add(Prob, Convert.ToDouble(PropInfo.GetValue(this)));
-                }
+                Row.Add(prob, Convert.ToDouble(propInfo.GetValue(this)));
             }
             return Row;
         }

@@ -10,9 +10,14 @@ namespace StatsLib.Utility
     public class Mode : IMode
     {
         public IEnumerable<double> Modes { get; private set; }
-        public int Frequency { get; private set; }
+        public int? Frequency { get; private set; }
 
-        public Mode(IEnumerable<double> modes, int frequency)
+        public Mode(IEnumerable<double> modes)
+        {
+            Modes = modes;
+        }
+
+        public Mode(IEnumerable<double> modes, int? frequency)
         {
             Modes = modes;
             Frequency = frequency;

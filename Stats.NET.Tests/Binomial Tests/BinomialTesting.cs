@@ -1,6 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using StatsLib.Distributions;
 using System;
+using StatsLib.Distributions.Discrete;
 
 
 namespace StatsLibTests
@@ -36,5 +37,15 @@ namespace StatsLibTests
 
             Assert.AreEqual(_bin.GetStandardDeviation(), Math.Sqrt(7.5));
         }
+
+        [TestMethod]
+        public void MGFTest()
+        {
+            var _bin = new Binomial(0.5, 30);
+
+
+            Assert.AreEqual(_bin.GetMgf(1), Math.Pow(1-0.5+0.5*Math.E, 30));
+        }
+
     }
 }

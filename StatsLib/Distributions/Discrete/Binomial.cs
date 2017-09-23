@@ -1,45 +1,42 @@
-﻿using StatsLib.Extensions;
+﻿using System;
+using StatsLib.Extensions;
 using StatsLib.Interfaces;
-using System;
 
-namespace StatsLib.Distributions
+namespace StatsLib.Distributions.Discrete
 {
     public class Binomial : IDistribution , IProbability, IBinomial
     {
         #region Properties and Backing Fields
-        private double probability;
+        private double _probability;
 
+        /// <inheritdoc />
         /// <summary>
         /// Needs to be between 0 and 1
         /// </summary>
         public double Probability
         {
-            get
-            {
-                return probability;
-            }
+            get => _probability;
             private set
             {
-                if (value < 0 || value > 1) throw new ArgumentOutOfRangeException("The number inputted was out of bounds (0-1)");
-                else probability = value;
+                if (value < 0 || value > 1) throw new ArgumentOutOfRangeException(nameof(Probability),
+                    "The number inputted was out of bounds (0-1)");
+                _probability = value;
             }
         }
 
-        private uint populationSize;
+        private uint _populationSize;
 
+        /// <inheritdoc />
         /// <summary>
         /// The amount of individuals in the sample
         /// </summary>
         public uint PopulationSize
         {
-            get
-            {
-                return populationSize;
-            }
+            get => _populationSize;
             private set
             {
-                if (value < 1) throw new ArgumentOutOfRangeException("Population Size cannot be smaller than 1");
-                else populationSize = value;
+                if (value < 1) throw new ArgumentOutOfRangeException(nameof(PopulationSize), "Population Size cannot be smaller than 1");
+                _populationSize = value;
             }
         }
         #endregion
@@ -66,18 +63,19 @@ namespace StatsLib.Distributions
             return Math.Sqrt(GetVariance());
         }
 
-        public double GetMGF(double t)
+        public double GetMgf(double t)
         {
             return Math.Pow(1 - Probability + Probability * Math.Exp(t), PopulationSize);
         }
 
-        public string GetPMF()
+        public string GetPmf()
         {
             throw new NotImplementedException();
         }
         #endregion
 
         #region IProbability Methods
+        /// <inheritdoc />
         /// <summary>
         /// Gets Probability there are less than or equal to a given amount of successes
         /// </summary>
@@ -85,7 +83,7 @@ namespace StatsLib.Distributions
         public double GetProbabilityLessThanOrEqual(double input)
         {
             double solution = 0;
-            for (int i = 0; i <= input; i++)
+            for (var i = 0; i <= input; i++)
             {
                 solution += Stats.BinomialCoef(i, PopulationSize) * (Math.Pow(Probability, i) * Math.Pow(1 - Probability, PopulationSize - i));
             }
@@ -93,6 +91,7 @@ namespace StatsLib.Distributions
             return solution;
         }
 
+        /// <inheritdoc />
         /// <summary>
         /// Gets Probability there are less than or a given amount of successes
         /// </summary>
@@ -100,7 +99,7 @@ namespace StatsLib.Distributions
         public double GetProbabilityLessThan(double input)
         {
             double solution = 0;
-            for (int i = 0; i < input; i++)
+            for (var i = 0; i < input; i++)
             {
                 solution += Stats.BinomialCoef(i, PopulationSize) * (Math.Pow(Probability, i) * Math.Pow(1 - Probability, PopulationSize - i));
             }
@@ -108,6 +107,7 @@ namespace StatsLib.Distributions
             return solution;
         }
 
+        /// <inheritdoc />
         /// <summary>
         /// Gets Probability there are more than or equal to a given amount of successes
         /// </summary>
@@ -117,6 +117,7 @@ namespace StatsLib.Distributions
             return 1 - GetProbabilityLessThan(input);
         }
 
+        /// <inheritdoc />
         /// <summary>
         /// Gets Probability there are more than a given amount of successes
         /// </summary>

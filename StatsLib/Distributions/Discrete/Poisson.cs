@@ -1,12 +1,13 @@
-﻿using StatsLib.Extensions;
+﻿using System;
+using StatsLib.Extensions;
 using StatsLib.Interfaces;
-using System;
 
-namespace StatsLib.Distributions
+namespace StatsLib.Distributions.Discrete
 {
-    class Poisson : IDistribution, IProbability, ISpecialGamma
+    public class Poisson : IDistribution, IProbability, ISpecialGamma
     {
         #region Property
+        /// <inheritdoc />
         /// <summary>
         /// This parameter can never be less than or equal to 0
         /// </summary>
@@ -34,12 +35,12 @@ namespace StatsLib.Distributions
             return Lambda;
         }
 
-        public double GetMGF(double t)
+        public double GetMgf(double t)
         {
             return Math.Exp(Lambda * (Math.Exp(t) - 1));
         }
 
-        public string GetPMF()
+        public string GetPmf()
         {
             throw new NotImplementedException();
         }
@@ -48,7 +49,7 @@ namespace StatsLib.Distributions
         #region IProbability Methods
         public double GetProbabilityLessThan(double input)
         {
-            if (input < 0) throw new ArgumentException("Parameter cannot be smaller than 0");
+            if (input < 0) throw new ArgumentOutOfRangeException(nameof(input), "Parameter cannot be smaller than 0");
             double solution = 0;
             for (double i = 0; i < input; i++)
             {
@@ -59,7 +60,7 @@ namespace StatsLib.Distributions
 
         public double GetProbabilityLessThanOrEqual(double input)
         {
-            if (input < 0) throw new ArgumentOutOfRangeException("Parameter cannot be smaller than 0");
+            if (input < 0) throw new ArgumentOutOfRangeException(nameof(input), "Parameter cannot be smaller than 0");
             double solution = 0;
             for (double i = 0; i <= input; i++)
             {

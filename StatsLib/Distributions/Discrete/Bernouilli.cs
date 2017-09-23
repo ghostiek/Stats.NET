@@ -1,8 +1,4 @@
-﻿using StatsLib.Extensions;
-using StatsLib.Interfaces;
-using System;
-
-namespace StatsLib.Distributions
+﻿namespace StatsLib.Distributions.Discrete
 {
     public class Bernouilli : Binomial
     {

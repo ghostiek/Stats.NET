@@ -1,6 +1,7 @@
 ﻿using System;
 using StatsLib.Distributions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using StatsLib.Distributions.Discrete;
 
 namespace StatsLib.BinomialTests
 {

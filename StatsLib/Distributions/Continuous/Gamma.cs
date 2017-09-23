@@ -1,44 +1,40 @@
-﻿using StatsLib.Interfaces;
-using System;
+﻿using System;
+using StatsLib.Interfaces;
 
-namespace StatsLib.Distributions
+namespace StatsLib.Distributions.Continuous
 {
     public class Gamma : IDistribution, IProbability, IGamma
     {
         #region Properties and Backing fields
-        private double alpha;
-        private double beta;
+        private double _alpha;
+        private double _beta;
 
+        /// <inheritdoc />
         /// <summary>
         /// Shape Parameter
         /// Has to be greater than 0
         /// </summary>
         public double Alpha
         {
-            get
-            {
-                return alpha;
-            }
+            get => _alpha;
             private set
             {
-                if (value <= 0) throw new ArgumentOutOfRangeException("Alpha cannot be smaller than or equal to 0");
-                else alpha = value;
+                if (value <= 0) throw new ArgumentOutOfRangeException(nameof(Alpha), "Alpha cannot be smaller than or equal to 0");
+                _alpha = value;
             }          
         }
+        /// <inheritdoc />
         /// <summary>
         /// Rate Parameter
         /// Has to be greater than 0
         /// </summary>
         public double Beta
         {
-            get
-            {
-                return beta;
-            }
+            get => _beta;
             private set
             {
-                if (value <= 0) throw new ArgumentOutOfRangeException("Beta cannot be smaller than or equal to 0");
-                else beta = value;
+                if (value <= 0) throw new ArgumentOutOfRangeException(nameof(Beta), "Beta cannot be smaller than or equal to 0");
+                _beta = value;
             }
         }
         #endregion
@@ -65,12 +61,12 @@ namespace StatsLib.Distributions
             return Alpha * Beta * Beta;
         }
 
-        public double GetMGF(double t)
+        public double GetMgf(double t)
         {
             return 1 / Math.Pow(1 - t / Beta, Alpha);
         }
 
-        public string GetPMF()
+        public string GetPmf()
         {
             throw new NotImplementedException();
         }

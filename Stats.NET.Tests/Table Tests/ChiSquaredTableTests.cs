@@ -5,6 +5,7 @@ using StatsLib.Mapping;
 using StatsLib.Tables.Classes;
 using System.Collections.Generic;
 using System.IO;
+using StatsLib.Distributions.Continuous;
 
 namespace StatsLibTests
 {

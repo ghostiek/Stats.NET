@@ -1,6 +1,6 @@
 ﻿namespace StatsLib.Interfaces
 {
-    interface IDistribution
+    public interface IDistribution
     {
         /// <summary>
         /// Returns the Expected Value
@@ -21,21 +21,26 @@
         double GetStandardDeviation();
 
         /// <summary>
-        /// Returns the Moment Generating Function
+        /// Returns the Moment Generating Function at a certain point t
         /// </summary>
         /// <param name="t"></param>
         /// <returns></returns>
-        double GetMGF(double t);
+        double GetMgf(double t);
 
         /// <summary>
         /// Returns the Probability Mass Function
         /// </summary>
         /// <returns></returns>
-        string GetPMF();
+        string GetPmf();
+
+        /// <summary>
+        /// Returns the Mode of the Distribution
+        /// </summary>
+        /// <returns></returns>
+        //double GetMode();
 
         //Learn those proofs for each Distribution before adding them
         /*
-        double GetMode();
         double GetSkewness();
         double GetKurtosis();
         double GetEntropy();

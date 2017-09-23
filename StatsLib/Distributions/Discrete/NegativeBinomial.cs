@@ -1,29 +1,29 @@
-﻿using StatsLib.Extensions;
+﻿using System;
+using StatsLib.Extensions;
 using StatsLib.Interfaces;
-using System;
 
-namespace StatsLib.Distributions
+namespace StatsLib.Distributions.Discrete
 {
-    class NegativeBinomial : IDistribution, IProbability, INegativeBinomial
+    public class NegativeBinomial : IDistribution, IProbability, INegativeBinomial
     {
         #region Properties and Backing Field
-        private double probability;
+        private double _probability;
+        /// <inheritdoc />
         /// <summary>
         /// Needs to be between 0 and 1
         /// </summary>
         public double Probability
         {
-            get
-            {
-                return probability;
-            }
+            get => _probability;
             private set
             {
-                if (value >= 0 || value <= 1) throw new ArgumentOutOfRangeException("The number inputted was out of bounds (0-1)");
-                else probability = value;
+                if (value >= 0 || value <= 1) throw new ArgumentOutOfRangeException(nameof(Probability),
+                    "The number inputted was out of bounds (0-1)");
+                _probability = value;
             }
         }
 
+        /// <inheritdoc />
         /// <summary>
         /// Number of failures until the experiment is stopped
         /// </summary>
@@ -52,19 +52,21 @@ namespace StatsLib.Distributions
             return Probability * (1 - FailureNumber) / Math.Pow((1 - Probability), 2);
         }
 
-        public double GetMGF(double t)
+        public double GetMgf(double t)
         {
-            if (t >= -Math.Log(Probability)) throw new ArgumentOutOfRangeException("t", "t cannot be larger than or equal to -log(Probability)");
+            if (t >= -Math.Log(Probability)) throw new ArgumentOutOfRangeException(nameof(t),
+                "t cannot be larger than or equal to -log(Probability)");
             return Math.Pow((1 - Probability) / (1 - Probability * Math.Exp(t)), FailureNumber);
         }
 
-        public string GetPMF()
+        public string GetPmf()
         {
             throw new NotImplementedException();
         }
         #endregion
 
         #region IProbability Methods
+        /// <inheritdoc />
         /// <summary>
         /// X = number of trials until Rth success
         /// </summary>
@@ -73,7 +75,7 @@ namespace StatsLib.Distributions
         public double GetProbabilityLessThan(double input)
         {
             double solution = 0;
-            for (int i = 0; i < input; i++)
+            for (var i = 0; i < input; i++)
             {
                 solution += GetExactNegativeBinomialProbability(Probability, FailureNumber, i);
             }
@@ -83,7 +85,7 @@ namespace StatsLib.Distributions
         public double GetProbabilityLessThanOrEqual(double input)
         {
             double solution = 0;
-            for (int i = 0; i <= input; i++)
+            for (var i = 0; i <= input; i++)
             {
                 solution += GetExactNegativeBinomialProbability(Probability, FailureNumber, i);
             }

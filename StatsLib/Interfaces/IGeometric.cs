@@ -1,6 +1,6 @@
 ﻿namespace StatsLib.Interfaces
 {
-    interface IGeometric
+    public interface IGeometric
     {
         /// <summary>
         /// Needs to be between 0 and 1

@@ -30,14 +30,14 @@ namespace StatsLibTests.BasicUtility
         public void HarmonicMean()
         {
             var mean = Stats.HarmonicMean(li);
-            Assert.AreEqual(300.0/137, mean);
+            Assert.AreEqual(300.0 / 137, mean);
         }
 
         [TestMethod]
         public void SD()
         {
             var sd = Stats.StandardDeviation(li);
-            Assert.AreEqual(Math.Sqrt(5/2), sd);
+            Assert.AreEqual(Math.Sqrt(5 / 2), sd);
         }
 
         [TestMethod]

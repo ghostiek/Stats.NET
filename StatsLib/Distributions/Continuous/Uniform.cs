@@ -1,33 +1,32 @@
-﻿using StatsLib.Interfaces;
-using System;
+﻿using System;
+using StatsLib.Interfaces;
 
-namespace StatsLib.Distributions
+namespace StatsLib.Distributions.Continuous
 {
 
     public class Uniform : IDistribution, IProbability, IUniform
     {
         #region Properties and Backing Field
-        private double upperBound;
+        private double _upperBound;
 
+        /// <inheritdoc />
         /// <summary>
         /// First Bound
         /// </summary>
         public double LowerBound { get; private set; }
 
+        /// <inheritdoc />
         /// <summary>
         /// Second Bound
         /// Needs to be larger than LowerBound
         /// </summary>
         public double UpperBound
         {
-            get
-            {
-                return upperBound;
-            }
+            get => _upperBound;
             private set
             {
                 if (value < LowerBound) throw new ArgumentException("The Upperbound parameter was smaller than the Lowerbound one");
-                else upperBound = value;
+                _upperBound = value;
             }
         }
         #endregion
@@ -54,13 +53,13 @@ namespace StatsLib.Distributions
             return Math.Pow(UpperBound - LowerBound, 2) / 12;
         }
 
-        public double GetMGF(double t)
+        public double GetMgf(double t)
         {
             if (t == 0) return 1;
             return (Math.Exp(t * UpperBound) - Math.Exp(t * LowerBound)) / (t * (UpperBound - LowerBound));
         }
 
-        public string GetPMF()
+        public string GetPmf()
         {
             throw new NotImplementedException();
         }
@@ -70,7 +69,7 @@ namespace StatsLib.Distributions
         public double GetProbabilityLessThan(double input)
         {
             double solution = 0;
-            for (double i = LowerBound; i <= UpperBound; i++)
+            for (var i = LowerBound; i <= UpperBound; i++)
             {
                 solution += 1 / (UpperBound - i);
             }

@@ -1,6 +1,6 @@
 ﻿namespace StatsLib.Interfaces
 {
-    interface INegativeBinomial
+    public interface INegativeBinomial
     {
         /// <summary>
         /// Needs to be between 0 and 1

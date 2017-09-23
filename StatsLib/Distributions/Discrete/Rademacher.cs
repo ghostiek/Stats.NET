@@ -1,12 +1,11 @@
-﻿using StatsLib.Extensions;
+﻿using System;
 using StatsLib.Interfaces;
-using System;
 
-namespace StatsLib.Distributions
+namespace StatsLib.Distributions.Discrete
 {
     public class Rademacher : IDistribution
     {
-        private const double probability = 0.5;
+        public const double Probability = 0.5;
 
         #region IDistribution Methods
         public double GetMean()
@@ -24,12 +23,12 @@ namespace StatsLib.Distributions
             return Math.Sqrt(GetVariance());
         }
 
-        public double GetMGF(double t)
+        public double GetMgf(double t)
         {
             return Math.Cosh(t);
         }
 
-        public string GetPMF()
+        public string GetPmf()
         {
             throw new NotImplementedException();
         }

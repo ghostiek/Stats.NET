@@ -1,8 +1,6 @@
-﻿using System.Collections.Generic;
-
-namespace StatsLib.Interfaces
+﻿namespace StatsLib.Interfaces
 {
-    interface INormal
+    public interface INormal
     {
         /// <summary>
         /// Also known as Mean or Average

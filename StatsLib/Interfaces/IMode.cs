@@ -2,9 +2,9 @@
 
 namespace StatsLib.Interfaces
 {
-    interface IMode
+    public interface IMode
     {
         IEnumerable<double> Modes { get; }
-        int Frequency { get; }
+        int? Frequency { get; }
     }
 }

@@ -1,25 +1,23 @@
-﻿using StatsLib.Interfaces;
-using System;
+﻿using System;
+using StatsLib.Interfaces;
 
-namespace StatsLib.Distributions
+namespace StatsLib.Distributions.Continuous
 {
     public class Exponential : IDistribution, IProbability, ISpecialGamma
     {
         #region Property and Backing Field
-        private double lambda;
+        private double _lambda;
+        /// <inheritdoc />
         /// <summary>
         /// This parameter can never be less than or equal to 0
         /// </summary>
         public double Lambda
         {
-            get
-            {
-                return lambda;
-            }
+            get => _lambda;
             private set
             {
-                if (value <= 0) throw new ArgumentOutOfRangeException("Lambda cannot be smaller than or equal to 0");
-                else lambda = value;
+                if (value <= 0) throw new ArgumentOutOfRangeException(nameof(Lambda), "Lambda cannot be smaller than or equal to 0");
+                _lambda = value;
             }
         }
         #endregion
@@ -45,13 +43,14 @@ namespace StatsLib.Distributions
             return 1 / Math.Pow(Lambda, 2);
         }
 
-        public double GetMGF(double t)
+        public double GetMgf(double t)
         {
-            if (t >= Lambda) throw new ArgumentOutOfRangeException("t", "t cannot be larger or equal to Lambda");
+            if (t >= Lambda) throw new ArgumentOutOfRangeException(nameof(t), "t cannot be larger or equal to Lambda");
             return Lambda / (Lambda - t);
         }
 
-        public string GetPMF()
+
+        public string GetPmf()
         {
             throw new NotImplementedException();
         }
@@ -60,7 +59,7 @@ namespace StatsLib.Distributions
         #region GetProbability Methods
         public double GetProbabilityLessThan(double input)
         {
-            if (input < 0) throw new ArgumentOutOfRangeException("Input cannot be smaller than 0");
+            if (input < 0) throw new ArgumentOutOfRangeException(nameof(input), "Input cannot be smaller than 0");
             else return 1 - Math.Pow(Math.E, -Lambda * input);
         }
 

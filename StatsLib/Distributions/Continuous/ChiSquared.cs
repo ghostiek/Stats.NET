@@ -1,45 +1,38 @@
-﻿using CsvHelper;
+﻿using System;
+using System.IO;
+using System.Linq;
+using CsvHelper;
 using StatsLib.Interfaces;
 using StatsLib.Mapping;
 using StatsLib.Tables.Classes;
-using System;
-using System.IO;
-using System.Linq;
 
-namespace StatsLib.Distributions
+namespace StatsLib.Distributions.Continuous
 {
     public class ChiSquared : IDistribution, IProbability, IChiSquared
     {
         #region Properties and Backing Field
 
+        /// <inheritdoc />
         /// <summary>
         /// Degree of Freedom of ChiSquared Distribution
         /// Always Population - 1
         /// </summary>
-        public uint DegreeOfFreedom
-        {
-            get
-            {
-                return PopulationSize - 1;
-            }
+        public uint DegreeOfFreedom => PopulationSize - 1;
 
-        }
+        private uint _populationSize;
 
-        private uint populationSize;
-
+        /// <inheritdoc />
         /// <summary>
         /// The amount of individuals in the sample
         /// </summary>
         public uint PopulationSize
         {
-            get
-            {
-                return populationSize;
-            }
+            get => _populationSize;
             private set
             {
-                if (value <= 1) throw new ArgumentOutOfRangeException("Population Size cannot be smaller than or equal to 1");
-                else populationSize = value;
+                if (value <= 1) throw new ArgumentOutOfRangeException(nameof(PopulationSize),
+                    "Population Size cannot be smaller than or equal to 1");
+                _populationSize = value;
             }
         }
         #endregion
@@ -65,13 +58,13 @@ namespace StatsLib.Distributions
             return Math.Sqrt(GetVariance());
         }
 
-        public double GetMGF(double t)
+        public double GetMgf(double t)
         {
-            if (t >= 0.5) throw new ArgumentOutOfRangeException("t", "t cannot be smaller than 0.5");
-            return 1 / Math.Pow((1 - 2 * t), DegreeOfFreedom / 2);
+            if (t >= 0.5) throw new ArgumentOutOfRangeException(nameof(t), "t cannot be smaller than 0.5");
+            return 1 / Math.Pow((1 - 2 * t), DegreeOfFreedom / 2.0);
         }
 
-        public string GetPMF()
+        public string GetPmf()
         {
             throw new NotImplementedException();
         }
@@ -104,6 +97,7 @@ namespace StatsLib.Distributions
         #endregion
 
         #region IChiSquared Methods
+        /// <inheritdoc />
         /// <summary>
         /// Used to get the Chi Squared Statistic
         /// </summary>
@@ -114,11 +108,12 @@ namespace StatsLib.Distributions
             //This grabs the Probabilities and its ChiSquared Statistics from the row
             var row = GetChiSquaredTable().GetDictionary();
 
-            var ChiSquaredStatistic = row[probability];
+            var chiSquaredStatistic = row[probability];
 
-            return ChiSquaredStatistic;
+            return chiSquaredStatistic;
         }
 
+        /// <inheritdoc />
         /// <summary>
         /// Returns a DataTable depending on your degree of freedom
         /// Useful if you want to get multiple Chi Squared Statistics
@@ -127,11 +122,11 @@ namespace StatsLib.Distributions
         public ChiSquaredTable GetChiSquaredTable()
         {
             //Gets Path to CSV
-            string SolutionPath = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName;
-            string ChiSquaredPath = Path.Combine(SolutionPath, @"StatsLib\Tables\CSVs\ChiSquaredTable.csv");
-            using (StreamReader Reader = new StreamReader(ChiSquaredPath))
+            var solutionPath = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName;
+            var chiSquaredPath = Path.Combine(solutionPath, @"StatsLib\Tables\CSVs\ChiSquaredTable.csv");
+            using (var reader = new StreamReader(chiSquaredPath))
             {
-                var csv = new CsvReader(Reader);
+                var csv = new CsvReader(reader);
 
                 csv.Configuration.RegisterClassMap<ChiSquaredTableMap>();
 
@@ -140,11 +135,9 @@ namespace StatsLib.Distributions
                 //Value #2 to end of line = Chi Squared Statistic
                 while (csv.Read())
                 {
-                    if (csv.TryGetField(0, out int intField) && (csv.GetField<int>(0) == DegreeOfFreedom))
-                    {
-                        record = csv.GetRecord<ChiSquaredTable>();
-                        break;
-                    }
+                    if (!csv.TryGetField(0, out int _) || (csv.GetField<int>(0) != DegreeOfFreedom)) continue;
+                    record = csv.GetRecord<ChiSquaredTable>();
+                    break;
                 }
                 return record;
             }

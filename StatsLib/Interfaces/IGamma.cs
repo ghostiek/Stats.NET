@@ -1,6 +1,6 @@
 ﻿namespace StatsLib.Interfaces
 {
-    interface IGamma
+    public interface IGamma
     {
         /// <summary>
         /// Shape Parameter

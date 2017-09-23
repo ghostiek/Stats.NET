@@ -2,6 +2,7 @@
 using StatsLib.Distributions;
 using StatsLib.Interfaces;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using StatsLib.Distributions.Continuous;
 
 namespace StatsLib.IntellisenseTest
 {

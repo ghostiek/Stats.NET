@@ -1,6 +1,6 @@
 ﻿namespace StatsLib.Interfaces
 {
-    interface ISpecialGamma
+    public interface ISpecialGamma
     {
         /// <summary>
         /// This parameter can never be less than or equal to 0

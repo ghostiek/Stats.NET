@@ -1,26 +1,24 @@
-﻿using StatsLib.Extensions;
+﻿using System;
 using StatsLib.Interfaces;
-using System;
 
-namespace StatsLib.Distributions
+namespace StatsLib.Distributions.Discrete
 {
-    class Geometric : IDistribution, IProbability, IGeometric
+    public class Geometric : IDistribution, IProbability, IGeometric
     {
         #region Property and Backing Field
-        private double probability;
+        private double _probability;
+        /// <inheritdoc />
         /// <summary>
         /// Needs to be between 0 and 1
         /// </summary>
         public double Probability
         {
-            get
-            {
-                return probability;
-            }
+            get => _probability;
             private set
             {
-                if (value >= 0 || value <= 1) throw new ArgumentOutOfRangeException("The number inputted was out of bounds (0-1)");
-                else probability = value;
+                if (value >= 0 || value <= 1) throw new ArgumentOutOfRangeException(nameof(Probability),
+                    "The number inputted was out of bounds (0-1)");
+                _probability = value;
             }
         }
         #endregion
@@ -46,14 +44,14 @@ namespace StatsLib.Distributions
             return (1 - Probability) / Math.Pow(Probability, 2);
         }
 
-        public double GetMGF(double t)
+        public double GetMgf(double t)
         {
             if (t >= -Math.Log(1 - Probability))
-                throw new ArgumentOutOfRangeException("t", "t cannot be greater than or equal to -ln(1-p)");
+                throw new ArgumentOutOfRangeException(nameof(t), "t cannot be greater than or equal to -ln(1-p)");
             return Probability * Math.Exp(t) / (1 - (1 - Probability) * Math.Exp(t));
         }
 
-        public string GetPMF()
+        public string GetPmf()
         {
             throw new NotImplementedException();
         }
@@ -62,9 +60,9 @@ namespace StatsLib.Distributions
         #region IProbability Methods
         public double GetProbabilityLessThan(double input)
         {
-            if (input < 1) throw new ArgumentOutOfRangeException("Parameter cannot be smaller than 1");
+            if (input < 1) throw new ArgumentOutOfRangeException(nameof(input), "Parameter cannot be smaller than 1");
             double solution = 0;
-            for (int i = 0; i < input; i++)
+            for (var i = 0; i < input; i++)
             {
                 solution += GetExactGeometricProbability(Probability, i);
             }
@@ -73,9 +71,9 @@ namespace StatsLib.Distributions
 
         public double GetProbabilityLessThanOrEqual(double input)
         {
-            if (input < 1) throw new ArgumentOutOfRangeException("Parameter cannot be smaller than 1");
+            if (input < 1) throw new ArgumentOutOfRangeException(nameof(input), "Parameter cannot be smaller than 1");
             double solution = 0;
-            for (int i = 0; i <= input; i++)
+            for (var i = 0; i <= input; i++)
             {
                 solution += GetExactGeometricProbability(Probability, i);
             }
@@ -94,6 +92,7 @@ namespace StatsLib.Distributions
         #endregion
 
         #region IGeometric Methods
+        /// <inheritdoc />
         /// <summary>
         /// Method to get the exact probability of an event occuring, rather than the sum of a number of events
         /// </summary>

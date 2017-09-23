@@ -1,6 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using StatsLib.Distributions;
 using System;
+using StatsLib.Distributions.Discrete;
 
 namespace StatsLibTests
 {
