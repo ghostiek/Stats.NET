@@ -12,21 +12,33 @@ namespace StatsLib.Extensions
         /// </summary>
         /// <param name="nums"></param>
         /// <returns></returns>
-        public static double GeometricMean(IEnumerable<double> nums) => Math.Pow(nums.Aggregate((a, b) => a * b), 1.0 / nums.Count());
+        public static double GeometricMean(IEnumerable<double> nums)
+        {
+            var enumerable = nums as IList<double> ?? nums.ToList();
+            return Math.Pow(enumerable.Aggregate((a, b) => a * b), 1.0 / enumerable.Count());
+        }
 
         /// <summary>
         /// Returns the Harmonic Mean
         /// </summary>
         /// <param name="nums"></param>
         /// <returns></returns>
-        public static double HarmonicMean(IEnumerable<double> nums) => nums.Count() / (nums.Sum(x => 1 / x));
+        public static double HarmonicMean(IEnumerable<double> nums)
+        {
+            var enumerable = nums as IList<double> ?? nums.ToList();
+            return enumerable.Count() / (enumerable.Sum(x => 1 / x));
+        }
 
         /// <summary>
         /// Returns the Arithmetic mean, the most commonly used average
         /// </summary>
         /// <param name="nums"></param>
         /// <returns></returns>
-        public static double ArithmeticMean(IEnumerable<double> nums) => nums.Sum() / nums.Count();
+        public static double ArithmeticMean(IEnumerable<double> nums)
+        {
+            var enumerable = nums as IList<double> ?? nums.ToList();
+            return enumerable.Sum() / enumerable.Count();
+        }
 
         /// <summary>
         /// Returns the Variance of the IEnumerable
@@ -36,8 +48,9 @@ namespace StatsLib.Extensions
         public static double Variance(IEnumerable<double> nums)
         {
             //Saving it here rather than finding it again every loop
-            var mean = ArithmeticMean(nums);
-            return nums.Sum(x => Math.Pow(x - mean, 2)) / nums.Count();
+            var enumerable = nums as IList<double> ?? nums.ToList();
+            var mean = ArithmeticMean(enumerable);
+            return enumerable.Sum(x => Math.Pow(x - mean, 2)) / enumerable.Count();
 
         }
 
@@ -61,17 +74,18 @@ namespace StatsLib.Extensions
             {
                 sortedNums = nums.OrderBy(x => x);
             }
-            double size = sortedNums.Count();
+            var enumerable = sortedNums as IList<double> ?? sortedNums.ToList();
+            double size = enumerable.Count();
             var numsToSkip = (int)Math.Floor(size / 2);
 
             //Odd
             if (size % 2 != 0)
             {
-                return sortedNums.Skip(numsToSkip).FirstOrDefault();
+                return enumerable.Skip(numsToSkip).FirstOrDefault();
             }
 
             //Even (We take the Mean of both of them)
-            var middleNums = sortedNums.Skip(numsToSkip - 1).Take(2);
+            var middleNums = enumerable.Skip(numsToSkip - 1).Take(2);
             return ArithmeticMean(middleNums);
         }
 
@@ -141,6 +155,10 @@ namespace StatsLib.Extensions
             return size.Factorial() / (successes.Factorial() * (size - successes).Factorial());
         }
 
-        public static double Range(IEnumerable<double> nums) => nums.Max() - nums.Min();   
+        public static double Range(IEnumerable<double> nums)
+        {
+            var enumerable = nums as IList<double> ?? nums.ToList();
+            return enumerable.Max() - enumerable.Min();
+        }
     }
 }
