@@ -26,5 +26,13 @@ namespace StatsLib.IntellisenseTest
         {
             //StatsLib.Mapping.ChiSquaredTableMap map = new StatsLib.Mapping.ChiSquaredTableMap();
         }
+
+        [TestMethod]
+        public void TestMethod3()
+        {
+            var test = new ChiSquared(12);
+
+            var popSize = test.PopulationSize;
+        }
     }
 }

@@ -59,7 +59,7 @@
     <Compile Include="Samples Test\SampleInitialization.cs" />
     <Compile Include="Table Tests\ChiSquaredProbAndStat.cs" />
     <Compile Include="Utility Tests\BasicUtilityTesting.cs" />
-    <Compile Include="Utility Tests\ExtensionsTesting.cs" />
+    <Compile Include="Utility Tests\MathUtilityTesting.cs" />
     <Compile Include="Table Tests\ChiSquaredTableTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

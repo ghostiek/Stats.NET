@@ -134,14 +134,6 @@ namespace StatsLib.Extensions
             return cumSum;
         }
 
-
-        public static double Factorial(this double val)
-        {
-            if (val < 0) throw new ArithmeticException("Cannot find factorial of a negative number.");
-            if (val <= 1) return 1;
-            return val * Factorial(val - 1);
-        }
-
         /// <summary>
         /// Gets the number of outcomes depending on the parameters
         /// </summary>

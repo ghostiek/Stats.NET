@@ -1,5 +1,5 @@
 ﻿using System;
-using StatsLib.Extensions;
+using StatsLib.Utility;
 using StatsLib.Interfaces;
 
 namespace StatsLib.Distributions.Discrete
