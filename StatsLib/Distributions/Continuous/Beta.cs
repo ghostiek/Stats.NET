@@ -9,8 +9,26 @@ namespace StatsLib.Distributions.Continuous
 {
     public class Beta : IBeta, IDistribution, IProbability
     {
-        public double A { get; set; }
-        public double B { get; set; }
+        private double _a;
+        private double _b;
+        public double A
+        {
+            get => _a;
+            private set
+            {
+                if (value <= 0) throw new ArgumentOutOfRangeException(nameof(A), "A cannot be smaller or equal to 0");
+                _a = value;
+            }
+        }
+        public double B
+        {
+            get => _b;
+            private set
+            {
+                if (value <= 0) throw new ArgumentOutOfRangeException(nameof(B), "B cannot be smaller or equal to 0");
+                _b = value;
+            }
+        }
 
         public Beta(double alpha, double beta)
         {
@@ -35,22 +53,24 @@ namespace StatsLib.Distributions.Continuous
 
         public double GetProbabilityLessThanOrEqual(double input)
         {
+            if (input < 0 || input > 1) throw new ArgumentOutOfRangeException(nameof(input),
+                "Parameter cannot be smaller than 0 or larger than 1");
             throw new NotImplementedException();
         }
 
         public double GetProbabilityLessThan(double input)
         {
-            throw new NotImplementedException();
+            return GetProbabilityLessThanOrEqual(input);
         }
 
         public double GetProbabilityMoreThanOrEqual(double input)
         {
-            throw new NotImplementedException();
+            return 1 - GetProbabilityLessThanOrEqual(input);
         }
 
         public double GetProbabilityMoreThan(double input)
         {
-            throw new NotImplementedException();
+            return 1 - GetProbabilityLessThanOrEqual(input);
         }
     }
 }
