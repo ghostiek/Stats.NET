@@ -2,7 +2,7 @@
 {
     public interface IBeta
     {
-        double A { get; set; }
-        double B { get; set; }
+        double A { get; }
+        double B { get; }
     }
 }

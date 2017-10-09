@@ -24,5 +24,12 @@ namespace StatsLibTests
             Assert.AreEqual(sol, Math.Exp(48));
         }
 
+        [TestMethod]
+        public void NameOfCheckTest()
+        {
+            var norm = new Normal(20, -4);
+            Assert.AreEqual(norm.Sigma, -4);
+        }
+
     }
 }

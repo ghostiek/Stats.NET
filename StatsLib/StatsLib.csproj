@@ -35,6 +35,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -54,12 +55,14 @@
     <Compile Include="Interfaces\IDiscreteUniform.cs" />
     <Compile Include="Interfaces\IGamma.cs" />
     <Compile Include="Interfaces\IGeometric.cs" />
+    <Compile Include="Interfaces\ILinearRegression.cs" />
     <Compile Include="Interfaces\IMode.cs" />
     <Compile Include="Interfaces\INegativeBinomial.cs" />
     <Compile Include="Interfaces\INormal.cs" />
     <Compile Include="Interfaces\ISample.cs" />
     <Compile Include="Interfaces\ISpecialGamma.cs" />
     <Compile Include="Interfaces\IUniform.cs" />
+    <Compile Include="Regression\LinearRegression.cs" />
     <Compile Include="Tables\Classes\ChiSquaredTable.cs" />
     <Compile Include="Distributions\Discrete\Binomial.cs" />
     <Compile Include="Distributions\Continuous\Normal.cs" />
@@ -67,7 +70,6 @@
     <Compile Include="Distributions\Discrete\Geometric.cs" />
     <Compile Include="Distributions\Continuous\Exponential.cs" />
     <Compile Include="Distributions\Continuous\Gamma.cs" />
-    <Compile Include="Distributions\MGF.cs" />
     <Compile Include="Hypergeometric.cs" />
     <Compile Include="Distributions\Discrete\NegativeBinomial.cs" />
     <Compile Include="Distributions\Continuous\Uniform.cs" />

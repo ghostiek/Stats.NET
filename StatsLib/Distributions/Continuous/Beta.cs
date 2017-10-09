@@ -55,6 +55,7 @@ namespace StatsLib.Distributions.Continuous
         {
             if (input < 0 || input > 1) throw new ArgumentOutOfRangeException(nameof(input),
                 "Parameter cannot be smaller than 0 or larger than 1");
+
             throw new NotImplementedException();
         }
 
