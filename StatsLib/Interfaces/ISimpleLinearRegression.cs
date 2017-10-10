@@ -3,7 +3,7 @@
 
 namespace StatsLib.Interfaces
 {
-    public interface ILinearRegression
+    public interface ISimpleLinearRegression
     {
         double? Intercept { get; }
         double? Slope { get; }

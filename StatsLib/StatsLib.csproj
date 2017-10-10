@@ -62,7 +62,7 @@
     <Compile Include="Interfaces\ISample.cs" />
     <Compile Include="Interfaces\ISpecialGamma.cs" />
     <Compile Include="Interfaces\IUniform.cs" />
-    <Compile Include="Regression\LinearRegression.cs" />
+    <Compile Include="Regression\SimpleLinearRegression.cs" />
     <Compile Include="Tables\Classes\ChiSquaredTable.cs" />
     <Compile Include="Distributions\Discrete\Binomial.cs" />
     <Compile Include="Distributions\Continuous\Normal.cs" />
