@@ -1,8 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using StatsLib.Extensions;
+using StatsLib.Utility;
 using System.Collections.Generic;
 using System;
-using StatsLib.Utility;
 using System.Linq;
 
 namespace StatsLibTests.BasicUtility
@@ -15,35 +14,35 @@ namespace StatsLibTests.BasicUtility
         [TestMethod]
         public void ArithmeticMean()
         {
-            var mean = Stats.ArithmeticMean(li);
+            var mean = Stat.ArithmeticMean(li);
             Assert.AreEqual(3, mean);
         }
 
         [TestMethod]
         public void GeometricMean()
         {
-            var mean = Stats.GeometricMean(li);
+            var mean = Stat.GeometricMean(li);
             Assert.AreEqual(2.605, Math.Round(mean, 3));
         }
 
         [TestMethod]
         public void HarmonicMean()
         {
-            var mean = Stats.HarmonicMean(li);
+            var mean = Stat.HarmonicMean(li);
             Assert.AreEqual(300.0 / 137, mean);
         }
 
         [TestMethod]
         public void SD()
         {
-            var sd = Stats.StandardDeviation(li);
+            var sd = Stat.StandardDeviation(li);
             Assert.AreEqual(Math.Sqrt(5 / 2), sd);
         }
 
         [TestMethod]
         public void OddMedianSorted()
         {
-            var median = Stats.Median(li);
+            var median = Stat.Median(li);
             Assert.AreEqual(3, median);
         }
 
@@ -52,14 +51,14 @@ namespace StatsLibTests.BasicUtility
         {
             var otherli = li;
             otherli.Add(2.5);
-            var median = Stats.Median(li);
+            var median = Stat.Median(li);
             Assert.AreEqual(2.75, median);
         }
 
         [TestMethod]
         public void CummulativeSummation()
         {
-            var csum = Stats.CumSum(li);
+            var csum = Stat.CumSum(li);
             var expected = new List<double>() { 1, 3, 6, 10, 15 };
             CollectionAssert.AreEqual(expected, csum.ToList());
         }
@@ -73,7 +72,7 @@ namespace StatsLibTests.BasicUtility
 
             var expectedLi = new List<double> { 1, 2 };
             var expectedMode = new Mode(expectedLi, 2);
-            var mode = Stats.Mode(li);
+            var mode = Stat.Mode(li);
             Assert.AreEqual(expectedMode.Frequency, mode.Frequency);
             CollectionAssert.AreEqual(expectedMode.Modes.ToList(), mode.Modes.ToList());
         }

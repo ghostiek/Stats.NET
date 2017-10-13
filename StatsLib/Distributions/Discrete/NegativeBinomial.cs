@@ -1,5 +1,5 @@
 ﻿using System;
-using StatsLib.Extensions;
+using StatsLib.Utility;
 using StatsLib.Interfaces;
 
 namespace StatsLib.Distributions.Discrete
@@ -106,7 +106,7 @@ namespace StatsLib.Distributions.Discrete
         #region Negative Binomial Methods
         public double GetExactNegativeBinomialProbability(double probability, uint number, double input)
         {
-            return Stats.BinomialCoef(input - 1, number - 1) * Math.Pow(probability, number) * Math.Pow(1 - probability, input - number);
+            return Stat.BinomialCoef(input - 1, number - 1) * Math.Pow(probability, number) * Math.Pow(1 - probability, input - number);
         }
         #endregion
     }

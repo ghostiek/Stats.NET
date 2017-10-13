@@ -3,9 +3,9 @@ using StatsLib.Utility;
 using System.Collections.Generic;
 using System.Linq; 
 
-namespace StatsLib.Extensions
+namespace StatsLib.Utility
 {
-    public static class Stats
+    public static class Stat
     {
         /// <summary>
         /// Returns the Geometric Mean

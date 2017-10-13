@@ -21,7 +21,7 @@ namespace StatsLibTests
             double success = 4;
             double size = 10;
 
-            Assert.AreEqual(210, StatsLib.Extensions.Stats.BinomialCoef(success,size));
+            Assert.AreEqual(210, Stat.BinomialCoef(success,size));
         }
 
         [TestMethod]

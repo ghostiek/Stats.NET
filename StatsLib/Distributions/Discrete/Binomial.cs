@@ -1,5 +1,5 @@
 ﻿using System;
-using StatsLib.Extensions;
+using StatsLib.Utility;
 using StatsLib.Interfaces;
 
 namespace StatsLib.Distributions.Discrete
@@ -85,7 +85,7 @@ namespace StatsLib.Distributions.Discrete
             double solution = 0;
             for (var i = 0; i <= input; i++)
             {
-                solution += Stats.BinomialCoef(i, PopulationSize) * (Math.Pow(Probability, i) * Math.Pow(1 - Probability, PopulationSize - i));
+                solution += Stat.BinomialCoef(i, PopulationSize) * (Math.Pow(Probability, i) * Math.Pow(1 - Probability, PopulationSize - i));
             }
 
             return solution;
@@ -101,7 +101,7 @@ namespace StatsLib.Distributions.Discrete
             double solution = 0;
             for (var i = 0; i < input; i++)
             {
-                solution += Stats.BinomialCoef(i, PopulationSize) * (Math.Pow(Probability, i) * Math.Pow(1 - Probability, PopulationSize - i));
+                solution += Stat.BinomialCoef(i, PopulationSize) * (Math.Pow(Probability, i) * Math.Pow(1 - Probability, PopulationSize - i));
             }
 
             return solution;
