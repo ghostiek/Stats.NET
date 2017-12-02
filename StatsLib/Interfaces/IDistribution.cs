@@ -1,4 +1,6 @@
-﻿namespace StatsLib.Interfaces
+﻿using System.Collections.Generic;
+
+namespace StatsLib.Interfaces
 {
     public interface IDistribution
     {
@@ -32,6 +34,12 @@
         /// </summary>
         /// <returns></returns>
         string GetPmf();
+
+        /// <summary>
+        /// Returns an IEnumerable of Sample values
+        /// </summary>
+        /// <returns></returns>
+        IEnumerable<double> GetRandomSample(int size);
 
         /// <summary>
         /// Returns the Mode of the Distribution

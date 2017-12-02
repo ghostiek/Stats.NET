@@ -98,6 +98,9 @@ namespace StatsLib.Samples
             }
         }
 
+        //Calls constructor Sample(IEnumerable<double> val)
+        public Sample(IDistribution dist, int size) : this(dist.GetRandomSample(size)){}
+
         /// <summary>
         /// Returns the Union of 2 Samples
         /// </summary>

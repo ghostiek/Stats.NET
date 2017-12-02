@@ -28,7 +28,7 @@ namespace Stats.NET.Tests.Regression_Test
                 table.Columns["A"],
                 table.Columns["B"]
             };
-            var x = new MultiLinearRegression(dcs, table.Columns["Y"]);
+            var x = new MultiLinearModel(dcs, table.Columns["Y"]);
         }
 
     }

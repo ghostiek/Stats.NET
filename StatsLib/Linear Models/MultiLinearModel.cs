@@ -4,10 +4,11 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using StatsLib.Utility;
 
 namespace StatsLib.Regression
 {
-    public class MultiLinearRegression
+    public class MultiLinearModel
     {
 
         public double? Intercept { get; private set; }
@@ -15,7 +16,7 @@ namespace StatsLib.Regression
         public List<double?> Residuals { get; private set; }
 
 
-        public MultiLinearRegression(IEnumerable<DataColumn> independentVariables, DataColumn dependentVariable)
+        public MultiLinearModel(IEnumerable<DataColumn> independentVariables, DataColumn dependentVariable)
         {
             //For optimization purposes
 
@@ -27,42 +28,39 @@ namespace StatsLib.Regression
                 throw new ArgumentException("The DataColumns do not have the same length");
             }
             //Creating our X Predictor Matrix
-            var X = new double[dataColumns[0].Table.Columns.Count + 1][];
+            var jaggedX = new double[dataColumns[0].Table.Columns.Count + 1][];
 
 
             for (var i = 0; i <= dataColumns[0].Table.Columns.Count; i++)
             {
-                X[i] = new double[dataColumns[0].Table.Rows.Count];
+                jaggedX[i] = new double[dataColumns[0].Table.Rows.Count];
             }
 
             //Our 1s vector
             for (var i = 0; i < dataColumns[0].Table.Rows.Count; i++)
             {
-                X[0][i] = 1;
+                jaggedX[0][i] = 1;
             }
 
             var index = 1;
             foreach (var dataColumn in dataColumns)
             {
-                X[index] = dataColumn.Table.Rows.Cast<DataRow>()
+                jaggedX[index] = dataColumn.Table.Rows.Cast<DataRow>()
                     .Select(row => (double)row[dataColumn.ColumnName])
                     .ToArray();
                 ++index;
             }
 
+            //This may seem inefficient but I would rather have something clear for the user to input. With a 2d array the X and Y values
+            //are much clearer than the jagged array we had
+            var matrixX = jaggedX.To2D();
 
-            //var X = new double[dataColumns.Count, dataColumns[0].Table.Rows.Count];
+            var matrixXTranspose = matrixX.ToTranspose();
 
-            ////Initialize first column to be all 1s
-            //for (var i = 0; i < dataColumns[0].Table.Rows.Count; i++)
-            //{
-            //    X[0, i] = 1;
-            //}
+            var xTransposeX = Matrix.Multiply(matrixXTranspose, matrixX);
 
-            //for (int i = 0; i < UPPER; i++)
-            //{
 
-            //}
+
 
 
         }

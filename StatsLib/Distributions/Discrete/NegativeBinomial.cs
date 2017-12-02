@@ -1,6 +1,7 @@
 ﻿using System;
 using StatsLib.Utility;
 using StatsLib.Interfaces;
+using System.Collections.Generic;
 
 namespace StatsLib.Distributions.Discrete
 {
@@ -63,6 +64,11 @@ namespace StatsLib.Distributions.Discrete
         {
             throw new NotImplementedException();
         }
+
+        public IEnumerable<double> GetRandomSample(int size)
+        {
+            throw new NotImplementedException();
+        }
         #endregion
 
         #region IProbability Methods
@@ -108,6 +114,7 @@ namespace StatsLib.Distributions.Discrete
         {
             return Stat.BinomialCoef(input - 1, number - 1) * Math.Pow(probability, number) * Math.Pow(1 - probability, input - number);
         }
+
         #endregion
     }
 }

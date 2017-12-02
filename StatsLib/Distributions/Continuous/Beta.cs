@@ -73,5 +73,10 @@ namespace StatsLib.Distributions.Continuous
         {
             return 1 - GetProbabilityLessThanOrEqual(input);
         }
+
+        public IEnumerable<double> GetRandomSample(int size)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

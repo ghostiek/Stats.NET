@@ -1,6 +1,7 @@
 ﻿using System;
 using StatsLib.Utility;
 using StatsLib.Interfaces;
+using System.Collections.Generic;
 
 namespace StatsLib.Distributions.Discrete
 {
@@ -69,6 +70,11 @@ namespace StatsLib.Distributions.Discrete
         }
 
         public string GetPmf()
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<double> GetRandomSample(int size)
         {
             throw new NotImplementedException();
         }

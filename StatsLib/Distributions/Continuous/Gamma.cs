@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using StatsLib.Interfaces;
 
 namespace StatsLib.Distributions.Continuous
@@ -70,6 +71,11 @@ namespace StatsLib.Distributions.Continuous
         {
             throw new NotImplementedException();
         }
+
+        public IEnumerable<double> GetRandomSample(int size)
+        {
+            throw new NotImplementedException();
+        }
         #endregion
 
         #region GetProbabilities Methods
@@ -92,6 +98,8 @@ namespace StatsLib.Distributions.Continuous
         {
             return 1 - GetProbabilityLessThanOrEqual(input);
         }
+
+
         #endregion
 
     }

@@ -9,14 +9,14 @@ using StatsLib.Interfaces;
 
 namespace StatsLib.Regression
 {
-    public class SimpleLinearRegression : ISimpleLinearRegression
+    public class SimpleLinearModel : ISimpleLinearRegression
     {
         public double? Intercept { get; private set; }
         public double? Slope { get; private set; }
         public List<double?> Residuals { get; private set; }
 
 
-        public SimpleLinearRegression(DataColumn independentVariable, DataColumn dependentVariable)
+        public SimpleLinearModel(DataColumn independentVariable, DataColumn dependentVariable)
         {
             if (independentVariable.Table.Rows.Count != dependentVariable.Table.Rows.Count)
                 throw new ArgumentException("The DataColumns do not have the same length");

@@ -30,6 +30,21 @@ namespace StatsLib.Distributions.Discrete
             throw new NotImplementedException();
         }
 
+        public IEnumerable<double> GetRandomSample(int size)
+        {
+            double[] sample = new double[size];
+            var n = B - A + 1;
+            var interval = 1.0 / n;
+            var rand = new Random();
+            for(int i = 0; i < size; ++i)
+            {
+                var probs = rand.NextDouble();
+                var generatedNumber = Math.Floor(probs / interval);
+                sample[i] = generatedNumber;
+            }
+            return sample;
+        }
+
         public double GetProbabilityLessThanOrEqual(double input)
         {
             var roundedDown = Math.Floor(input);

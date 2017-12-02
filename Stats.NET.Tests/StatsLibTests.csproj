@@ -59,6 +59,7 @@
     <Compile Include="Regression Test\MultiLinearTesting.cs" />
     <Compile Include="Samples Test\SamplesOperations.cs" />
     <Compile Include="Samples Test\SampleInitialization.cs" />
+    <Compile Include="Samples Test\DistributionInitialization.cs" />
     <Compile Include="Table Tests\ChiSquaredProbAndStat.cs" />
     <Compile Include="Utility Tests\BasicUtilityTesting.cs" />
     <Compile Include="Utility Tests\MathUtilityTesting.cs" />

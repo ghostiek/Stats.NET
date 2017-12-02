@@ -5,6 +5,7 @@ using CsvHelper;
 using StatsLib.Interfaces;
 using StatsLib.Mapping;
 using StatsLib.Tables.Classes;
+using System.Collections.Generic;
 
 namespace StatsLib.Distributions.Continuous
 {
@@ -65,6 +66,11 @@ namespace StatsLib.Distributions.Continuous
         }
 
         public string GetPmf()
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<double> GetRandomSample(int size)
         {
             throw new NotImplementedException();
         }

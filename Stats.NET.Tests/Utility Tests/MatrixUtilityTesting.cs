@@ -7,6 +7,7 @@ namespace Stats.NET.Tests.Utility_Tests
     [TestClass]
     public class MatrixUtilityTesting
     {
+        //It is important to note that those arrays inside the jagged arrays are VERTICAL VECTORS
         public static double[][] TestArray =
         {
             new double[]
@@ -24,36 +25,38 @@ namespace Stats.NET.Tests.Utility_Tests
         };
 
         [TestMethod]
-        public void TestMethod1()
+        public void To2DTest()
         {
-            //Note, I would be using Multi-dim arrays over jagged but I can't because DataTable won't let me do it cleanly.
-            //It is important to note that those arrays inside the jagged arrays are VERTICAL VECTORS
-            var transpose = new double[][]
+            var multidimArray = new double[,]
             {
-                new double[]
-                {
-                    1, 6, 11
-                },
-                new double[]
-                {
-                    2, 7, 12
-                },
-                new double[]
-                {
-                    3, 8, 13
-                },
-                new double[]
-                {
-                    4, 9, 14
-                },
-                new double[]
-                {
-                    5, 10, 15
-                }
-
+                {1, 2, 3, 4, 5},
+                {6, 7, 8, 9, 10},
+                {11, 12, 13, 14, 15},
             };
-            var test = TestArray.ToTranspose();
+
+            var test = TestArray.To2D();
+
+            CollectionAssert.AreEqual(multidimArray, test);
 
         }
+
+        [TestMethod]
+        public void ToTranspose()
+        {
+            var test = TestArray.To2D().ToTranspose();
+
+            var transpose = new double[,]
+            {
+                {1, 6, 11},
+                {2, 7, 12},
+                {3, 8, 13},
+                {4, 9, 14},
+                {5, 10, 15}
+            };
+
+            CollectionAssert.AreEqual(transpose, test);
+        }
+
+
     }
 }

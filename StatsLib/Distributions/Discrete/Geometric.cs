@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using StatsLib.Interfaces;
 
 namespace StatsLib.Distributions.Discrete
@@ -55,6 +56,11 @@ namespace StatsLib.Distributions.Discrete
         {
             throw new NotImplementedException();
         }
+
+        public IEnumerable<double> GetRandomSample(int size)
+        {
+            throw new NotImplementedException();
+        }
         #endregion
 
         #region IProbability Methods
@@ -103,6 +109,7 @@ namespace StatsLib.Distributions.Discrete
         {
             return Math.Pow(1 - probability, number - 1) * probability;
         }
+
         #endregion
     }
 }
