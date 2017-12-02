@@ -4,7 +4,10 @@ A Statistics library written in C#
 I'll be adding more distributions down the line, so far the ones I do have will be documented in the Wiki
 
 ## TODO
-1) Find a way to make MGF/PMFs more than just string, maybe eventually utilize their derivatives to get orders. That would require a library that can either do Indefinite integrals. Odds are I'll just make a GET request to something like WolframAlpha.
-2) Find a cleaner way to implement ChiSquared Statistic and Probability
-3) Eventually make distributions that allow custom input so people can extrapolate on their sample by assuming a certain distribution
-4) Update Wiki
+1) Finish Simple Linear Model implementation
+2) Work on more Samples based on Distributions
+3) Work on MultiLinear Models, will need to add ViF, AIC, BIC, AICc, R^2 Adj. 
+4) Transformations
+5) Find a cleaner way to implement ChiSquared Statistic and Probability
+6) Eventually make distributions that allow custom input so people can extrapolate on their sample by assuming a certain distribution
+7) Update Wiki
