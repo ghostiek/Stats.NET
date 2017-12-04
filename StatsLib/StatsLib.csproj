@@ -55,6 +55,7 @@
     <Compile Include="Interfaces\IDiscreteUniform.cs" />
     <Compile Include="Interfaces\IGamma.cs" />
     <Compile Include="Interfaces\IGeometric.cs" />
+    <Compile Include="Interfaces\IRademacher.cs" />
     <Compile Include="Interfaces\ISimpleLinearRegression.cs" />
     <Compile Include="Interfaces\IMode.cs" />
     <Compile Include="Interfaces\INegativeBinomial.cs" />

@@ -39,5 +39,15 @@ namespace Stats.NET.Tests.Samples_Test
             //Just using this to put a breakpoint. To observe the variables
             Assert.AreEqual(0, 0);
         }
+
+        [TestMethod]
+        public void Rademacher()
+        {
+            var tries = 7;
+            var rad = new Rademacher(tries);
+            var samp = new Sample(rad, 20);
+            //Just using this to put a breakpoint. To observe the variables
+            Assert.AreEqual(0, 0);
+        }
     }
 }
