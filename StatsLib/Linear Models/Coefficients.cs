@@ -9,10 +9,10 @@ namespace StatsLib.Linear_Models
 {
     public class Coefficients
     {
-        public List<double?> SumSquaredRegression { get; private set; }
+        public List<double> SumSquaredRegression { get; private set; }
 
         //Has DoF 1, so its the same
-        public List<double?> MeanSquaredRegression => SumSquaredRegression;
+        public List<double> MeanSquaredRegression { get; private set; }
 
         public List<double?> Beta { get; private set; }
 
@@ -20,7 +20,7 @@ namespace StatsLib.Linear_Models
 
         public List<TTest> TStatistic { get; private set; }
 
-        public Coefficients(double? intercept, List<double?> beta, List<double?> standardErrors)
+        public Coefficients(double? intercept, List<double?> beta, List<double?> standardErrors, List<double?> X, List<double?> Y, Func<double?, double?> model)
         {
             beta.Insert(0, intercept);
             Beta = beta;
@@ -34,9 +34,12 @@ namespace StatsLib.Linear_Models
                 TStatistic.Add(new TTest(Beta[i], StandardErrors[i]));
             }
 
+            SumSquaredRegression = new List<double>() { X.Sum(x => Math.Pow((model(x) - Y.Average()).Value, 2)) };
+            MeanSquaredRegression = SumSquaredRegression;
+
         }
 
-        public Coefficients(List<double?> beta, List<double?> standardErrors)
+        public Coefficients(List<double?> beta, List<double?> standardErrors, List<double?> X, List<double?> Y, Func<double?, double?> model)
         {
             Beta = beta;
 
@@ -48,6 +51,9 @@ namespace StatsLib.Linear_Models
             {
                 TStatistic.Add(new TTest(Beta[i], StandardErrors[i]));
             }
+
+            SumSquaredRegression = new List<double>() { X.Sum(x => Math.Pow((model(x) - Y.Average()).Value, 2)) };
+            MeanSquaredRegression = SumSquaredRegression;
         }
     }
 }

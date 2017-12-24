@@ -57,6 +57,7 @@
     <Compile Include="Intellisense Test\IntellisenseTest.cs" />
     <Compile Include="Normal Tests\NormalTesting.cs" />
     <Compile Include="Regression Test\MultiLinearTesting.cs" />
+    <Compile Include="Regression Test\SimpleLinearModelsTest.cs" />
     <Compile Include="Samples Test\SamplesOperations.cs" />
     <Compile Include="Samples Test\SampleInitialization.cs" />
     <Compile Include="Samples Test\DistributionInitialization.cs" />

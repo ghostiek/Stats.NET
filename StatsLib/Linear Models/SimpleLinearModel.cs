@@ -20,27 +20,34 @@ namespace StatsLib.Linear_Models
 
         public Residuals Residuals { get; private set; }
 
-        public Func<double?, double?> Model => (double? x) => Slopes.Beta[0] + Slopes.Beta[1] * x;
+        public Func<double?, double?> Model { get; private set; }
 
-        public double RSquared => Slopes.SumSquaredRegression.Sum(x => x.Value) / SumSquaredTotal;
+        public double RSquared { get; private set; }
 
-        public double RSquaredAdjusted => 1 - ((1 - RSquared) * (DegreeOfFreedom - 1) / (DegreeOfFreedom - 2));
+        public double RSquaredAdjusted { get; private set; }
 
-        public double SumSquaredTotal => Slopes.SumSquaredRegression.Sum(x => x.Value) + Residuals.SumSquaredErrors.Value;
+        public double SumSquaredTotal { get; private set; }
 
-        public double MeanSquaredTotal => Slopes.MeanSquaredRegression.Sum(x => x.Value) + Residuals.SumSquaredErrors.Value;
-
-
+        public double MeanSquaredTotal { get; private set; }
 
         public SimpleLinearModel(DataColumn independentVariable, DataColumn dependentVariable)
         {
             if (independentVariable.Table.Rows.Count != dependentVariable.Table.Rows.Count)
                 throw new ArgumentException("The DataColumns do not have the same length");
 
-            var model = GetCoefs(independentVariable, dependentVariable).GetResiduals(independentVariable, dependentVariable);
+            GetCoefs(independentVariable, dependentVariable);
+            GetResiduals(independentVariable, dependentVariable);
+
+            SumSquaredTotal = Slopes.SumSquaredRegression.Sum() + Residuals.SumSquaredErrors.Value;
+            MeanSquaredTotal = Slopes.MeanSquaredRegression.Sum() + Residuals.SumSquaredErrors.Value;
+
+            RSquared = Slopes.SumSquaredRegression.Sum() / SumSquaredTotal;
+            RSquaredAdjusted = 1 - ((1 - RSquared) * (DegreeOfFreedom - 1) / (DegreeOfFreedom - 2));
+            FStatistic = new FTest(this);
+            
         }
 
-        private SimpleLinearModel GetCoefs(DataColumn independentVariable, DataColumn dependentVariable)
+        private void GetCoefs(DataColumn independentVariable, DataColumn dependentVariable)
         {
             var Y = new List<double?>();
             var X = new List<double?>();
@@ -72,6 +79,7 @@ namespace StatsLib.Linear_Models
             var intercept = (sumY * sumXSquared - sumX * sumXY) / (counter * sumXSquared - sumX * sumX);
             var slope = (counter * sumXY - sumX * sumY) / (counter * sumXSquared - sumX * sumX);
 
+            Model = (double? x) => intercept + slope * x;
             //sum((mtcars$mpg-pred)^2)/(nrow(mtcars)-2))
             var sigma = Math.Sqrt(Y.Sum(x => Math.Pow(x.Value - Model(x).Value, 2))) / (counter - 2);
 
@@ -82,11 +90,10 @@ namespace StatsLib.Linear_Models
 
             var stdErrors = new List<double?>() { interceptStdError, slopeStdError };
 
-            Slopes = new Coefficients(intercept, new List<double?> { slope }, stdErrors);
-            return this;
+            Slopes = new Coefficients(intercept, new List<double?> { slope }, stdErrors, X, Y, Model);
         }
 
-        private SimpleLinearModel GetResiduals(DataColumn independentVariable, DataColumn dependentVariable)
+        private void GetResiduals(DataColumn independentVariable, DataColumn dependentVariable)
         {
             var actualValue = new List<double?>();
             var predictedValue = new List<double?>();
@@ -102,16 +109,14 @@ namespace StatsLib.Linear_Models
                     continue;
                 }
 
-                actualValue[counter] = y;
-                predictedValue[counter] = Slopes.Beta[0] + Slopes.Beta[1] * x;
+                actualValue.Add(y);
+                predictedValue.Add(Slopes.Beta[0] + Slopes.Beta[1] * x);
                 counter++;
             }
 
             DegreeOfFreedom = predictedValue.Count - 2;
 
             Residuals = new Residuals(predictedValue, actualValue, DegreeOfFreedom);
-
-            return this;
         }
     }
 }   
