@@ -4,7 +4,7 @@ A Statistics library written in C#
 I'll be adding more distributions down the line, so far the ones I do have will be documented in the Wiki
 
 ## TODO
-1) Finish Simple Linear Model implementation
+1) Finish testing Simple Linear Model implementation
 2) Work on more Samples based on Distributions
 3) Work on MultiLinear Models, will need to add ViF, AIC, BIC, AICc, R^2 Adj. 
 4) Transformations
