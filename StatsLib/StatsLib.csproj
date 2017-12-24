@@ -56,13 +56,16 @@
     <Compile Include="Interfaces\IGamma.cs" />
     <Compile Include="Interfaces\IGeometric.cs" />
     <Compile Include="Interfaces\IRademacher.cs" />
-    <Compile Include="Interfaces\ISimpleLinearRegression.cs" />
+    <Compile Include="Interfaces\ISimpleLinearModel.cs" />
     <Compile Include="Interfaces\IMode.cs" />
     <Compile Include="Interfaces\INegativeBinomial.cs" />
     <Compile Include="Interfaces\INormal.cs" />
     <Compile Include="Interfaces\ISample.cs" />
     <Compile Include="Interfaces\ISpecialGamma.cs" />
+    <Compile Include="Interfaces\ITest.cs" />
     <Compile Include="Interfaces\IUniform.cs" />
+    <Compile Include="Linear Models\Coefficients.cs" />
+    <Compile Include="Linear Models\Residuals.cs" />
     <Compile Include="Linear Models\MultiLinearModel.cs" />
     <Compile Include="Linear Models\SimpleLinearModel.cs" />
     <Compile Include="Tables\Classes\ChiSquaredTable.cs" />
@@ -77,6 +80,8 @@
     <Compile Include="Distributions\Continuous\Uniform.cs" />
     <Compile Include="Interfaces\IChiSquared.cs" />
     <Compile Include="Mapping\ChiSquaredTableMap.cs" />
+    <Compile Include="Tests\FTest.cs" />
+    <Compile Include="Tests\TTest.cs" />
     <Compile Include="Utility\ConfidenceInterval.cs" />
     <Compile Include="Utility\Calculate.cs" />
     <Compile Include="Utility\Matrix.cs" />
