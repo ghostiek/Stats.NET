@@ -18,7 +18,7 @@ namespace StatsLib.Tests
         public FTest(ISimpleLinearModel model)
         {
             Statistic = model.Slopes.MeanSquaredRegression.Sum() / model.Residuals.MeanSquaredErrors;
-            DegreeOfFreedom = model.DegreeOfFreedom - 1;
+            DegreeOfFreedom = model.DegreeOfFreedom;
         }
 
     }

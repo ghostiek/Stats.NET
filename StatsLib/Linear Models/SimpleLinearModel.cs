@@ -81,10 +81,18 @@ namespace StatsLib.Linear_Models
 
             Model = (double? x) => intercept + slope * x;
             //sum((mtcars$mpg-pred)^2)/(nrow(mtcars)-2))
-            var sigma = Math.Sqrt(Y.Sum(x => Math.Pow(x.Value - Model(x).Value, 2))) / (counter - 2);
 
-            var SXX = X.Sum(x => x - X.Average()).Value;
-            var interceptStdError = sigma * Math.Sqrt(1 / counter + Math.Pow(X.Average().Value, 2) / SXX);
+            var sigma = 0.0;
+            var predictedVals = X.Select(x => Model(x)).ToList();
+            for(int i = 0; i < Y.Count; i++)
+            {
+                sigma += Math.Pow((Y[i] - predictedVals[i]).Value, 2);
+            }
+            sigma = Math.Sqrt(sigma / (counter - 2));
+
+            var SXX = X.Sum(x => Math.Pow((x - X.Average()).Value, 2));
+
+            var interceptStdError = sigma * Math.Sqrt((1.0 / counter) + (Math.Pow(X.Average().Value, 2) / SXX));
 
             var slopeStdError = sigma / Math.Sqrt(SXX);
 
