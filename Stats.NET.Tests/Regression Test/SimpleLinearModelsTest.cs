@@ -24,7 +24,6 @@ namespace Stats.NET.Tests.Regression_Test
                 var csv = new CsvReader(sr);
                 records = csv.GetRecords<Mtcars>().ToList();
             }
-            //var records = CsvHelper.
             var table = new DataTable();
             table.Columns.Add("MPG", typeof(double));
             table.Columns.Add("Cyl", typeof(double));

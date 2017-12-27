@@ -58,7 +58,15 @@ namespace StatsLib.Distributions.Continuous
 
         public IEnumerable<double> GetRandomSample(int size)
         {
-            throw new NotImplementedException();
+            //y = ‎1 − e−λx
+            //x = ln(1-y)/(−λ)
+            var sample = new double[size];
+            var rand = new Random();
+            for(int i = 0; i < size; ++i)
+            {
+                sample[i] = Math.Log(rand.NextDouble()) / (-Lambda);
+            }
+            return sample;
         }
         #endregion
 

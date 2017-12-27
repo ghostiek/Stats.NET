@@ -4,6 +4,8 @@ using StatsLib.Distributions.Continuous;
 using StatsLib.Samples;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using CsvHelper;
+using System.IO;
 
 namespace Stats.NET.Tests.Samples_Test
 {
@@ -49,5 +51,34 @@ namespace Stats.NET.Tests.Samples_Test
             //Just using this to put a breakpoint. To observe the variables
             Assert.AreEqual(0, 0);
         }
+
+        [TestMethod]
+        public void Exponential()
+        {
+            var exp = new Exponential(3);
+
+            var sample = exp.GetRandomSample(10000);
+
+            var li = new List<Test>();
+            foreach (var item in sample)
+            {
+                li.Add(new Test(item));
+            }
+
+            using(var wr = new StreamWriter(@"Tables\CSVs\expdataset.csv"))
+            {
+                var csv = new CsvWriter(wr);
+                csv.WriteRecords(li);
+            }
+
+            Assert.AreEqual(0, 0);
+        }
+
+        public class Test
+        {
+            public double Num { get; set; }
+            public Test(double num) => Num = num;
+        }
+
     }
 }
