@@ -15,7 +15,7 @@ namespace StatsLib.Utility
             return val * Factorial(val - 1);
         }
 
-        public static double SequenceSummation(int from, int to, Func<double, double> equation)
+        public static double SequenceSummation(double from, double to, Func<double, double> equation)
         {
             double total = 0;
             for (var i = from; i <= to; i++)
@@ -25,7 +25,7 @@ namespace StatsLib.Utility
             return total;
         }
 
-        public static double SequenceProduct(int from, int to, Func<double, double> equation)
+        public static double SequenceProduct(double from, double to, Func<double, double> equation)
         {
             double total = 1;
             for (var i = from; i <= to; i++)

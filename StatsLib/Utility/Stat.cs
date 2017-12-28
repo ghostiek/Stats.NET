@@ -152,5 +152,6 @@ namespace StatsLib.Utility
             var enumerable = nums as IList<double> ?? nums.ToList();
             return enumerable.Max() - enumerable.Min();
         }
+        
     }
 }

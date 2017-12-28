@@ -57,7 +57,7 @@ namespace Stats.NET.Tests.Samples_Test
         {
             var exp = new Exponential(3);
 
-            var sample = exp.GetRandomSample(10000);
+            var sample = exp.GetRandomSample(1000000);
 
             var li = new List<Test>();
             foreach (var item in sample)
