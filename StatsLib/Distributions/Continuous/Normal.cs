@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using StatsLib.Interfaces;
+using StatsLib.Utility;
 
 namespace StatsLib.Distributions.Continuous
 {
@@ -63,7 +64,28 @@ namespace StatsLib.Distributions.Continuous
 
         public IEnumerable<double> GetRandomSample(int size)
         {
-            throw new NotImplementedException();
+            var sample = new double[size];
+            var rand = new Random();
+            for (int i = 0; i < size; ++i)
+            {
+                var p = rand.NextDouble();
+                var x = 2 * p - 1;
+                //var formula =
+                //    Calculate.SequenceSummation(0, 10, k => 
+                //        Calculate.SequenceSummation(0,9, m =>
+                //        Stat.BinomialCoef( ))* Math.Pow(x*Math.Sqrt(Math.PI)/2, 2*k+1)/(2*k+1) )
+                //Using Maclaurin series to estimate the inverse error function
+                //Found on http://mathworld.wolfram.com/InverseErf.html
+                //Will need to generate the formula so I can get to those extreme values, atm ranges from -2 to 2
+                sample[i] =
+                    Mu + Math.Sqrt(2 * Sigma) * Math.Sqrt(Math.PI) * 0.5 *
+                    (x + Math.Pow(x, 3) * Math.PI / 12.0 + Math.Pow(x, 5) * Math.Pow(Math.PI, 2) * 7 / 480.0 +
+                    Math.Pow(x, 7) * Math.Pow(Math.PI, 3) * 127 / 40320.0 +
+                    Math.Pow(x, 9) * Math.Pow(Math.PI, 4) * 4369 / 5806080.0 +
+                    Math.Pow(x, 11) * Math.Pow(Math.PI, 5) * 34807 / 182476800.0);
+                    
+            }
+            return sample;
         }
         #endregion
 
