@@ -72,6 +72,7 @@ namespace StatsLib.Distributions.Continuous
 
         public IEnumerable<double> GetRandomSample(int size)
         {
+
             throw new NotImplementedException();
         }
         #endregion

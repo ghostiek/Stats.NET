@@ -78,7 +78,7 @@ namespace StatsLib.Distributions.Continuous
                 var lnx = Math.Log(1 - Math.Pow(x, 2));
                 var tt1 = 2 / (Math.PI * 0.147) + 0.5 * lnx;
                 var tt2 = 1 / (0.147) * lnx;
-                sample[i] = sign * Math.Sqrt(-tt1 + Math.Sqrt(tt1 * tt1 - tt2));
+                sample[i] = Mu + Math.Sqrt(Sigma) * sign * Math.Sqrt(-tt1 + Math.Sqrt(tt1 * tt1 - tt2));
             }
             return sample;
         }
