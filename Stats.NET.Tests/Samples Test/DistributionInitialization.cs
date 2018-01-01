@@ -96,6 +96,28 @@ namespace Stats.NET.Tests.Samples_Test
             Assert.AreEqual(0, 0);
         }
 
+        [TestMethod]
+        public void ChiSquare()
+        {
+            var norm = new ChiSquared(20);
+
+            var sample = norm.GetRandomSample(1000000);
+
+            var li = new List<Test>();
+            foreach (var item in sample)
+            {
+                li.Add(new Test(item));
+            }
+
+            using (var wr = new StreamWriter(@"Tables\CSVs\chisquaredataset.csv"))
+            {
+                var csv = new CsvWriter(wr);
+                csv.WriteRecords(li);
+            }
+
+            Assert.AreEqual(0, 0);
+        }
+
         public class Test
         {
             public double Num { get; set; }

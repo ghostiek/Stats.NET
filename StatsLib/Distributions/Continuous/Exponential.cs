@@ -51,9 +51,9 @@ namespace StatsLib.Distributions.Continuous
         }
 
 
-        public string GetPmf()
+        public double GetPdf(double x)
         {
-            throw new NotImplementedException();
+            return Lambda * Math.Exp(-Lambda * x);
         }
 
         public IEnumerable<double> GetRandomSample(int size)

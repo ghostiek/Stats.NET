@@ -67,7 +67,7 @@ namespace StatsLib.Distributions.Continuous
             return 1 / Math.Pow(1 - t / Beta, Alpha);
         }
 
-        public string GetPmf()
+        public double GetPdf(double x)
         {
             throw new NotImplementedException();
         }

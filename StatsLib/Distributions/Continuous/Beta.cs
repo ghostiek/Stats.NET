@@ -46,7 +46,7 @@ namespace StatsLib.Distributions.Continuous
             throw new NotImplementedException();
         }
 
-        public string GetPmf()
+        public double GetPdf(double x)
         {
             throw new NotImplementedException();
         }

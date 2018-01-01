@@ -9,31 +9,36 @@ namespace StatsLib.Distributions.Discrete
 {
     public class DiscreteUniform : IDiscreteUniform, IDistribution, IProbability
     {
-        public int A { get; private set; }
-        public int B { get; private set; }
+        public int LowerBound { get; private set; }
+        public int UpperBound { get; private set; }
 
         public DiscreteUniform(int lowerBound, int upperBound)
         {
-            A = lowerBound;
-            B = upperBound;
+            LowerBound = lowerBound;
+            UpperBound = upperBound;
         }
-        public double GetMean() => (A + B) / 2.0;
+        public double GetMean() => (LowerBound + UpperBound) / 2.0;
 
-        public double GetVariance() => (Math.Pow(B - A + 1, 2) - 1) / 12;
+        public double GetVariance() => (Math.Pow(UpperBound - LowerBound + 1, 2) - 1) / 12;
 
         public double GetStandardDeviation() => Math.Sqrt(GetVariance());
 
-        public double GetMgf(double t) => (Math.Exp(A * t) - Math.Exp((B + 1) * t)) / ((B - A + 1) * (1 - Math.Exp(t)));
+        public double GetMgf(double t) => (Math.Exp(LowerBound * t) - Math.Exp((UpperBound + 1) * t)) / ((UpperBound - LowerBound + 1) * (1 - Math.Exp(t)));
 
-        public string GetPmf()
+        /// <summary>
+        /// Note: No matter what x is the Pmf will be the same
+        /// </summary>
+        /// <param name="x"></param>
+        /// <returns></returns>
+        public double GetPdf(double x = 0)
         {
-            throw new NotImplementedException();
+            return 1 / (UpperBound - LowerBound - 1);
         }
 
         public IEnumerable<double> GetRandomSample(int size)
         {
             double[] sample = new double[size];
-            var n = B - A + 1;
+            var n = UpperBound - LowerBound + 1;
             var interval = 1.0 / n;
             var rand = new Random();
             for(int i = 0; i < size; ++i)

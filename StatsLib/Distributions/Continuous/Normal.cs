@@ -31,10 +31,10 @@ namespace StatsLib.Distributions.Continuous
         }
         #endregion
 
-        public Normal(double mean, double variance)
+        public Normal(double mean, double standardDeviation)
         {
             Mu = mean;
-            Sigma = variance;
+            Sigma = standardDeviation;
         }
 
         #region IDistribution Methods
@@ -45,21 +45,21 @@ namespace StatsLib.Distributions.Continuous
 
         public double GetStandardDeviation()
         {
-            return Math.Sqrt(Sigma);
+            return Sigma;
         }
 
         public double GetVariance()
         {
-            return Sigma;
+            return Math.Pow(Sigma, 2);
         }
         public double GetMgf(double t)
         {
             return Math.Exp(Mu * t + 0.5 * GetVariance() * Math.Pow(t, 2));
         }
 
-        public string GetPmf()
+        public double GetPdf(double x)
         {
-            throw new NotImplementedException();
+            return Math.Exp(-Math.Pow(x - Mu, 2) / (2 * GetVariance())) / Math.Sqrt(2 * Math.PI * GetVariance());
         }
 
         public IEnumerable<double> GetRandomSample(int size)
@@ -78,7 +78,7 @@ namespace StatsLib.Distributions.Continuous
                 var lnx = Math.Log(1 - Math.Pow(x, 2));
                 var tt1 = 2 / (Math.PI * 0.147) + 0.5 * lnx;
                 var tt2 = 1 / (0.147) * lnx;
-                sample[i] = Mu + Math.Sqrt(Sigma) * sign * Math.Sqrt(-tt1 + Math.Sqrt(tt1 * tt1 - tt2));
+                sample[i] = Mu + Sigma * sign * Math.Sqrt(-tt1 + Math.Sqrt(tt1 * tt1 - tt2));
             }
             return sample;
         }

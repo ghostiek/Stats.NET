@@ -52,9 +52,16 @@ namespace StatsLib.Distributions.Discrete
             return Probability * Math.Exp(t) / (1 - (1 - Probability) * Math.Exp(t));
         }
 
-        public string GetPmf()
+        /// <summary>
+        /// The parameter is the number of trials
+        /// </summary>
+        /// <param name="x"></param>
+        /// <returns></returns>
+        public double GetPdf(double x)
         {
-            throw new NotImplementedException();
+            if (x <= 0)
+                throw new ArgumentOutOfRangeException(nameof(x), "x cannot be smaller than 1");
+            return Math.Pow(1 - Probability, x - 1) * Probability; 
         }
 
         public IEnumerable<double> GetRandomSample(int size)

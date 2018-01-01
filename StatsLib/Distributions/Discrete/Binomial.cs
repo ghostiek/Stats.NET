@@ -69,9 +69,15 @@ namespace StatsLib.Distributions.Discrete
             return Math.Pow(1 - Probability + Probability * Math.Exp(t), PopulationSize);
         }
 
-        public string GetPmf()
+        /// <summary>
+        /// The parameter is the number of successes
+        /// </summary>
+        /// <param name="x"></param>
+        /// <returns></returns>
+        public double GetPdf(double x)
         {
-            throw new NotImplementedException();
+            return Stat.BinomialCoef(x, PopulationSize) * Math.Pow(Probability, x) *
+                Math.Pow(1 - Probability, PopulationSize - x);
         }
 
         public IEnumerable<double> GetRandomSample(int size)

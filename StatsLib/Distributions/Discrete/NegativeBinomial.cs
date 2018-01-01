@@ -60,9 +60,16 @@ namespace StatsLib.Distributions.Discrete
             return Math.Pow((1 - Probability) / (1 - Probability * Math.Exp(t)), FailureNumber);
         }
 
-        public string GetPmf()
+        /// <summary>
+        /// x is the number of successes
+        /// </summary>
+        /// <param name="x"></param>
+        /// <returns></returns>
+        public double GetPdf(double x)
         {
-            throw new NotImplementedException();
+            if (x < 0) throw new ArgumentOutOfRangeException(nameof(x), "x cannot be smaller than or equal to 0");
+            return Stat.BinomialCoef(x + FailureNumber - 1, x) * Math.Pow(1 - Probability, FailureNumber) *
+                Math.Pow(Probability, x);
         }
 
         public IEnumerable<double> GetRandomSample(int size)

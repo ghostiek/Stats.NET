@@ -2,7 +2,7 @@
 {
     public interface IDiscreteUniform
     {
-        int A { get; }
-        int B { get; }
+        int LowerBound { get; }
+        int UpperBound { get; }
     }
 }

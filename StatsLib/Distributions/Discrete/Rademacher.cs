@@ -49,9 +49,9 @@ namespace StatsLib.Distributions.Discrete
             return Math.Cosh(t);
         }
 
-        public string GetPmf()
+        public double GetPdf(double x)
         {
-            throw new NotImplementedException();
+            return x == -1 || x == 1 ? 0.5 : 0;
         }
 
         public IEnumerable<double> GetRandomSample(int size)

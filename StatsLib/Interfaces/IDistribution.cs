@@ -30,10 +30,10 @@ namespace StatsLib.Interfaces
         double GetMgf(double t);
 
         /// <summary>
-        /// Returns the Probability Mass Function
+        /// Returns the Probability Density Function
         /// </summary>
         /// <returns></returns>
-        string GetPmf();
+        double GetPdf(double x);
 
         /// <summary>
         /// Returns an IEnumerable of Sample values

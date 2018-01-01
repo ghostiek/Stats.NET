@@ -65,15 +65,30 @@ namespace StatsLib.Distributions.Continuous
             return 1 / Math.Pow((1 - 2 * t), DegreeOfFreedom / 2.0);
         }
 
-        public string GetPmf()
+        public double GetPdf(double x)
         {
             throw new NotImplementedException();
         }
 
         public IEnumerable<double> GetRandomSample(int size)
         {
-
-            throw new NotImplementedException();
+            var sample = new double[size];
+            var rand = new Random();
+            for (int i = 0; i < size; ++i)
+            {
+                //This is an approximation of the Inverse Error Function, hard coding the Maclaurin series would be
+                //too ugly, and coding the actual Maclaurin series to a set limit takes too much of a toll on
+                //performence. So I used this implementation
+                //https://stackoverflow.com/questions/27229371/inverse-error-function-in-c
+                var sign = rand.NextDouble() > 0.5 ? -1 : 1;
+                var p = rand.NextDouble();
+                var x = 2 * p - 1;
+                var lnx = Math.Log(1 - Math.Pow(x, 2));
+                var tt1 = 2 / (Math.PI * 0.147) + 0.5 * lnx;
+                var tt2 = 1 / (0.147) * lnx;
+                sample[i] = Math.Pow(GetMean() + Math.Sqrt(GetVariance()) * sign * Math.Sqrt(-tt1 + Math.Sqrt(tt1 * tt1 - tt2)), 2);
+            }
+            return sample;
         }
         #endregion
 

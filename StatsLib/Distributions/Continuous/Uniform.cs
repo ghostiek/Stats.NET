@@ -60,9 +60,9 @@ namespace StatsLib.Distributions.Continuous
             return (Math.Exp(t * UpperBound) - Math.Exp(t * LowerBound)) / (t * (UpperBound - LowerBound));
         }
 
-        public string GetPmf()
+        public double GetPdf(double x)
         {
-            throw new NotImplementedException();
+            return x >= LowerBound || x <= UpperBound ? 1 / (UpperBound - LowerBound) : 0;
         }
 
         public IEnumerable<double> GetRandomSample(int size)

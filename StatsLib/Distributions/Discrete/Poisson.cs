@@ -41,9 +41,9 @@ namespace StatsLib.Distributions.Discrete
             return Math.Exp(Lambda * (Math.Exp(t) - 1));
         }
 
-        public string GetPmf()
+        public double GetPdf(double x)
         {
-            throw new NotImplementedException();
+            return Math.Pow(Lambda, x) * Math.Exp(-Lambda) / x.Factorial();
         }
 
         public IEnumerable<double> GetRandomSample(int size)

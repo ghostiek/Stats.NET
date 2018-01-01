@@ -52,7 +52,8 @@
     <Compile Include="Distributions\Discrete\Rademacher.cs" />
     <Compile Include="Interfaces\IBeta.cs" />
     <Compile Include="Interfaces\IBinomial.cs" />
-    <Compile Include="Interfaces\IDiscreteUniform.cs" />
+    <Compile Include="Interfaces\IDIscreteUniform.cs" />
+    <Compile Include="Interfaces\IDistribution.cs" />
     <Compile Include="Interfaces\IGamma.cs" />
     <Compile Include="Interfaces\IGeometric.cs" />
     <Compile Include="Interfaces\IRademacher.cs" />
@@ -88,7 +89,6 @@
     <Compile Include="Utility\Mode.cs" />
     <Compile Include="Sample\Sample.cs" />
     <Compile Include="Utility\Stat.cs" />
-    <Compile Include="Interfaces\IDistribution.cs" />
     <Compile Include="Interfaces\IProbability.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
