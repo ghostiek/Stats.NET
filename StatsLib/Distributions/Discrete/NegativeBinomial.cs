@@ -53,6 +53,12 @@ namespace StatsLib.Distributions.Discrete
             return Probability * (1 - FailureNumber) / Math.Pow((1 - Probability), 2);
         }
 
+        public double GetMode()
+        {
+            if (FailureNumber <= 1) return 0;
+            return Math.Floor(Probability * (FailureNumber - 1) / (1 - Probability));
+        }
+
         public double GetMgf(double t)
         {
             if (t >= -Math.Log(Probability)) throw new ArgumentOutOfRangeException(nameof(t),
@@ -70,6 +76,11 @@ namespace StatsLib.Distributions.Discrete
             if (x < 0) throw new ArgumentOutOfRangeException(nameof(x), "x cannot be smaller than or equal to 0");
             return Stat.BinomialCoef(x + FailureNumber - 1, x) * Math.Pow(1 - Probability, FailureNumber) *
                 Math.Pow(Probability, x);
+        }
+
+        public double GetCdf(double x)
+        {
+            throw new NotImplementedException();
         }
 
         public IEnumerable<double> GetRandomSample(int size)

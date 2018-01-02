@@ -36,7 +36,7 @@ namespace Stats.NET.Tests.Samples_Test
         {
             var a = 0;
             var b = 5;
-            var uni = new Uniform(a, b);
+            var uni = new ContinuousUniform(a, b);
             var samp = new Sample(uni, 20);
             //Just using this to put a breakpoint. To observe the variables
             Assert.AreEqual(0, 0);

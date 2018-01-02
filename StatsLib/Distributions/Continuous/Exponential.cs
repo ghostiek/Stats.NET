@@ -29,20 +29,13 @@ namespace StatsLib.Distributions.Continuous
         }
 
         #region IDistribution Methods
-        public double GetMean()
-        {
-            return 1 / Lambda;
-        }
+        public double GetMean() => 1 / Lambda;
 
-        public double GetStandardDeviation()
-        {
-            return Math.Sqrt(GetVariance());
-        }
+        public double GetStandardDeviation() => Math.Sqrt(GetVariance());      
 
-        public double GetVariance()
-        {
-            return 1 / Math.Pow(Lambda, 2);
-        }
+        public double GetVariance() => 1 / Math.Pow(Lambda, 2);
+
+        public double GetMode() => 0;
 
         public double GetMgf(double t)
         {
@@ -50,11 +43,9 @@ namespace StatsLib.Distributions.Continuous
             return Lambda / (Lambda - t);
         }
 
+        public double GetPdf(double x) => Lambda * Math.Exp(-Lambda * x);
 
-        public double GetPdf(double x)
-        {
-            return Lambda * Math.Exp(-Lambda * x);
-        }
+        public double GetCdf(double x) => 1 - Math.Exp(-Lambda * x);
 
         public IEnumerable<double> GetRandomSample(int size)
         {

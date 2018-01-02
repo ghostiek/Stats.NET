@@ -1,11 +1,13 @@
 ﻿using System;
+using System.Linq;
 using System.Collections.Generic;
 using StatsLib.Interfaces;
+using StatsLib.Utility;
 
 namespace StatsLib.Distributions.Continuous
 {
 
-    public class Uniform : IDistribution, IProbability, IUniform
+    public class ContinuousUniform : IDistribution, IProbability, IUniform
     {
         #region Properties and Backing Field
         private double _upperBound;
@@ -32,27 +34,20 @@ namespace StatsLib.Distributions.Continuous
         }
         #endregion
 
-        public Uniform(double lowerBound, double upperBound)
+        public ContinuousUniform(double lowerBound, double upperBound)
         {
             LowerBound = lowerBound;
             UpperBound = upperBound;
         }
 
         #region IDistribution Methods
-        public double GetMean()
-        {
-            return (LowerBound + UpperBound) / 2;
-        }
+        public double GetMean() => (LowerBound + UpperBound) / 2;
 
-        public double GetStandardDeviation()
-        {
-            return Math.Sqrt(GetVariance());
-        }
+        public double GetStandardDeviation() => Math.Sqrt(GetVariance());
 
-        public double GetVariance()
-        {
-            return Math.Pow(UpperBound - LowerBound, 2) / 12;
-        }
+        public double GetVariance() => Math.Pow(UpperBound - LowerBound, 2) / 12;
+
+        public double GetMode() => throw new NotImplementedException();
 
         public double GetMgf(double t)
         {
@@ -60,9 +55,13 @@ namespace StatsLib.Distributions.Continuous
             return (Math.Exp(t * UpperBound) - Math.Exp(t * LowerBound)) / (t * (UpperBound - LowerBound));
         }
 
-        public double GetPdf(double x)
+        public double GetPdf(double x) => x >= LowerBound || x <= UpperBound ? 1 / (UpperBound - LowerBound) : 0;
+
+        public double GetCdf(double x)
         {
-            return x >= LowerBound || x <= UpperBound ? 1 / (UpperBound - LowerBound) : 0;
+            if (x < LowerBound) return 0;
+            if (x >= UpperBound) return 1;
+            return (x - LowerBound) / (UpperBound - LowerBound);
         }
 
         public IEnumerable<double> GetRandomSample(int size)

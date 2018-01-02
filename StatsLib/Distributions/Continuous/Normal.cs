@@ -38,29 +38,20 @@ namespace StatsLib.Distributions.Continuous
         }
 
         #region IDistribution Methods
-        public double GetMean()
-        {
-            return Mu;
-        }
+        public double GetMean() => Mu;      
 
-        public double GetStandardDeviation()
-        {
-            return Sigma;
-        }
+        public double GetStandardDeviation() => Sigma;
 
-        public double GetVariance()
-        {
-            return Math.Pow(Sigma, 2);
-        }
-        public double GetMgf(double t)
-        {
-            return Math.Exp(Mu * t + 0.5 * GetVariance() * Math.Pow(t, 2));
-        }
+        public double GetVariance() => Math.Pow(Sigma, 2);
 
-        public double GetPdf(double x)
-        {
-            return Math.Exp(-Math.Pow(x - Mu, 2) / (2 * GetVariance())) / Math.Sqrt(2 * Math.PI * GetVariance());
-        }
+        public double GetMode() => Mu;
+
+        public double GetMgf(double t) => Math.Exp(Mu * t + 0.5 * GetVariance() * Math.Pow(t, 2));    
+
+        public double GetPdf(double x) => 
+            Math.Exp(-Math.Pow(x - Mu, 2) / (2 * GetVariance())) / Math.Sqrt(2 * Math.PI * GetVariance());
+
+        public double GetCdf(double x) => 0.5 * (1 + Stat.ErrorFunction((x - Mu) / (Math.Sqrt(2 * GetVariance()))));
 
         public IEnumerable<double> GetRandomSample(int size)
         {

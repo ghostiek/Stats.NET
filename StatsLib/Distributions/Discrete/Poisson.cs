@@ -36,6 +36,11 @@ namespace StatsLib.Distributions.Discrete
             return Lambda;
         }
 
+        public double GetMode()
+        {
+            //Floor(Lamda)-1 too, find a better impl
+            return Math.Floor(Lambda);
+        }
         public double GetMgf(double t)
         {
             return Math.Exp(Lambda * (Math.Exp(t) - 1));
@@ -44,6 +49,11 @@ namespace StatsLib.Distributions.Discrete
         public double GetPdf(double x)
         {
             return Math.Pow(Lambda, x) * Math.Exp(-Lambda) / x.Factorial();
+        }
+
+        public double GetCdf(double x)
+        {
+            throw new NotImplementedException();
         }
 
         public IEnumerable<double> GetRandomSample(int size)

@@ -29,29 +29,25 @@ namespace StatsLib.Distributions.Discrete
         }
 
         #region IDistribution Methods
-        public double GetMean()
-        {
-            return 0;
-        }
+        public double GetMean() => 0;
 
-        public double GetVariance()
-        {
-            return 1;
-        }
+        public double GetVariance() => 1;
 
-        public double GetStandardDeviation()
-        {
-            return Math.Sqrt(GetVariance());
-        }
+        public double GetStandardDeviation() => Math.Sqrt(GetVariance());
 
-        public double GetMgf(double t)
+        public double GetMode()
         {
-            return Math.Cosh(t);
+            throw new NotImplementedException();
         }
-
-        public double GetPdf(double x)
+        public double GetMgf(double t) => Math.Cosh(t);
+        
+        public double GetPdf(double x) => x == -1 || x == 1 ? 0.5 : 0;
+        
+        public double GetCdf(double x)
         {
-            return x == -1 || x == 1 ? 0.5 : 0;
+            if (x < -1) return 0;
+            if (x >= 1) return 1;
+            return 0.5;
         }
 
         public IEnumerable<double> GetRandomSample(int size)

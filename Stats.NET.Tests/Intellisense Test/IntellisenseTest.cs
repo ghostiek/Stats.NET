@@ -18,7 +18,7 @@ namespace StatsLib.IntellisenseTest
             var chi = new ChiSquared(3);
             var dof = chi.DegreeOfFreedom;
 
-            var uni = new Uniform(1, 3);
+            var uni = new ContinuousUniform(1, 3);
         }
 
         [TestMethod]

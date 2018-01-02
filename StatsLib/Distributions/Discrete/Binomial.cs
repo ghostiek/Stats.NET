@@ -49,21 +49,21 @@ namespace StatsLib.Distributions.Discrete
         }
 
         #region IDistribution Methods
-        public double GetMean()
-        {
-            return Probability * PopulationSize;
-        }
+        public double GetMean() => Probability * PopulationSize;
 
-        public double GetVariance()
-        {
-            return (1 - Probability) * Probability * PopulationSize;
-        }
+        public double GetVariance() => (1 - Probability) * Probability * PopulationSize;
+     
+        public double GetStandardDeviation() => Math.Sqrt(GetVariance());
 
-        public double GetStandardDeviation()
+        public double GetMode()
         {
-            return Math.Sqrt(GetVariance());
+            if (Probability == 1) return PopulationSize;
+            if (Probability == 0 || Math.Floor((PopulationSize + 1) * Probability) == (PopulationSize + 1) * Probability)
+            {
+                return Math.Floor((PopulationSize + 1) * Probability);
+            }
+            return (PopulationSize + 1) * Probability; //Also (PopulationSize + 1) * Probability - 1, fix the Mode impl
         }
-
         public double GetMgf(double t)
         {
             return Math.Pow(1 - Probability + Probability * Math.Exp(t), PopulationSize);
@@ -80,6 +80,10 @@ namespace StatsLib.Distributions.Discrete
                 Math.Pow(1 - Probability, PopulationSize - x);
         }
 
+        public double GetCdf(double x)
+        {
+            throw new NotImplementedException();
+        }
         public IEnumerable<double> GetRandomSample(int size)
         {
             throw new NotImplementedException();

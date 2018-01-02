@@ -152,6 +152,29 @@ namespace StatsLib.Utility
             var enumerable = nums as IList<double> ?? nums.ToList();
             return enumerable.Max() - enumerable.Min();
         }
+
+        /// <summary>
+        /// Gets the approximation with maximum error of 1.5*10^-7. Used the fourth approximation
+        /// https://en.wikipedia.org/wiki/Error_function#Approximation_with_elementary_functions
+        /// </summary>
+        /// <param name="x"></param>
+        /// <returns></returns>
+        public static double ErrorFunction(double x)
+        {
+            var sign = x > 0 ? 1 : -1;
+            var p = 0.3275911;
+            var a1 = 0.254829592;
+            var a2 = -0.284496736;
+            var a3 = 1.421413741;
+            var a4 = -1.453152027;
+            var a5 = 1.061405429;
+
+            var t = 1 / (1 + p * x);
+
+            return 1 - 
+                (a1 * t + a2 * Math.Pow(t, 2) + a3 * Math.Pow(t, 3) + a4 * Math.Pow(t, 4) + a5 * Math.Pow(t, 5))
+                * Math.Exp(-Math.Pow(x, 2));
+        }
         
     }
 }

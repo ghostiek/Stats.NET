@@ -78,7 +78,7 @@
     <Compile Include="Distributions\Continuous\Gamma.cs" />
     <Compile Include="Hypergeometric.cs" />
     <Compile Include="Distributions\Discrete\NegativeBinomial.cs" />
-    <Compile Include="Distributions\Continuous\Uniform.cs" />
+    <Compile Include="Distributions\Continuous\ContinuousUniform.cs" />
     <Compile Include="Interfaces\IChiSquared.cs" />
     <Compile Include="Mapping\ChiSquaredTableMap.cs" />
     <Compile Include="Tests\FTest.cs" />

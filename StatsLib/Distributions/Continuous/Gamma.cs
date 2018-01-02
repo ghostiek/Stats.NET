@@ -47,27 +47,22 @@ namespace StatsLib.Distributions.Continuous
         }
 
         #region IDistribution Methods
-        public double GetMean()
-        {
-            return Alpha * Beta;
-        }
+        public double GetMean() => Alpha * Beta;
 
-        public double GetStandardDeviation()
-        {
-            return Math.Sqrt(GetVariance());
-        }
+        public double GetStandardDeviation() => Math.Sqrt(GetVariance());
+        
+        public double GetVariance() => Alpha * Beta * Beta;
 
-        public double GetVariance()
-        {
-            return Alpha * Beta * Beta;
-        }
+        public double GetMgf(double t) => 1 / Math.Pow(1 - t / Beta, Alpha);
 
-        public double GetMgf(double t)
-        {
-            return 1 / Math.Pow(1 - t / Beta, Alpha);
-        }
+        public double GetMode() => (Alpha - 1) / Beta;
 
         public double GetPdf(double x)
+        {
+            throw new NotImplementedException();
+        }
+
+        public double GetCdf(double x)
         {
             throw new NotImplementedException();
         }

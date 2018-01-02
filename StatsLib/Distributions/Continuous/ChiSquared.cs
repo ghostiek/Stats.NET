@@ -44,20 +44,13 @@ namespace StatsLib.Distributions.Continuous
         }
 
         #region IDistribution Methods
-        public double GetMean()
-        {
-            return DegreeOfFreedom;
-        }
+        public double GetMean() => DegreeOfFreedom;
 
-        public double GetVariance()
-        {
-            return 2 * DegreeOfFreedom;
-        }
+        public double GetVariance() => 2 * DegreeOfFreedom;
 
-        public double GetStandardDeviation()
-        {
-            return Math.Sqrt(GetVariance());
-        }
+        public double GetStandardDeviation() => Math.Sqrt(GetVariance());
+
+        public double GetMode() => Math.Max(DegreeOfFreedom - 2, 0);
 
         public double GetMgf(double t)
         {
@@ -66,6 +59,11 @@ namespace StatsLib.Distributions.Continuous
         }
 
         public double GetPdf(double x)
+        {
+            throw new NotImplementedException();
+        }
+
+        public double GetCdf(double x)
         {
             throw new NotImplementedException();
         }

@@ -30,7 +30,8 @@ namespace StatsLib.Interfaces
         double GetMgf(double t);
 
         /// <summary>
-        /// Returns the Probability Density Function
+        /// Returns the Probability Density/Mass Function, depending if we're using a continuous or discrete Random
+        /// Variable
         /// </summary>
         /// <returns></returns>
         double GetPdf(double x);
@@ -42,10 +43,17 @@ namespace StatsLib.Interfaces
         IEnumerable<double> GetRandomSample(int size);
 
         /// <summary>
+        /// Returns the Cumulative Density Function
+        /// </summary>
+        /// <param name="x"></param>
+        /// <returns></returns>
+        double GetCdf(double x);
+
+        /// <summary>
         /// Returns the Mode of the Distribution
         /// </summary>
         /// <returns></returns>
-        //double GetMode();
+        double GetMode();
 
         //Learn those proofs for each Distribution before adding them
         /*

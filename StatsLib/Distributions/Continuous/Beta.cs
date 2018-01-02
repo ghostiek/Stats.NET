@@ -41,12 +41,19 @@ namespace StatsLib.Distributions.Continuous
 
         public double GetStandardDeviation() => Math.Sqrt(GetVariance());
 
+        public double GetMode() => (A - 1) / (A + B - 2);
+
         public double GetMgf(double t)
         {
             throw new NotImplementedException();
         }
 
         public double GetPdf(double x)
+        {
+            throw new NotImplementedException();
+        }
+
+        public double GetCdf(double x)
         {
             throw new NotImplementedException();
         }
