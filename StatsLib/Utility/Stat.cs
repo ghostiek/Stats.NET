@@ -154,7 +154,7 @@ namespace StatsLib.Utility
         }
 
         /// <summary>
-        /// Gets the approximation with maximum error of 1.5*10^-7. Used the fourth approximation
+        /// Gets the approximation with maximum error of 1.5*10^-7. Used the fourth approximation.
         /// https://en.wikipedia.org/wiki/Error_function#Approximation_with_elementary_functions
         /// </summary>
         /// <param name="x"></param>

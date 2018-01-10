@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace StatsLib.Distributions.Discrete
 {
-    public class Binomial : IDistribution , IProbability, IBinomial
+    public class Binomial : IDistribution, IProbability, IBinomial
     {
         #region Properties and Backing Fields
         private double _probability;
@@ -41,7 +41,7 @@ namespace StatsLib.Distributions.Discrete
             }
         }
         #endregion
-        
+
         public Binomial(double probability, uint populationSize)
         {
             Probability = probability;
@@ -52,7 +52,7 @@ namespace StatsLib.Distributions.Discrete
         public double GetMean() => Probability * PopulationSize;
 
         public double GetVariance() => (1 - Probability) * Probability * PopulationSize;
-     
+
         public double GetStandardDeviation() => Math.Sqrt(GetVariance());
 
         public double GetMode()
@@ -86,7 +86,18 @@ namespace StatsLib.Distributions.Discrete
         }
         public IEnumerable<double> GetRandomSample(int size)
         {
-            throw new NotImplementedException();
+            var samp = new List<double>();
+            var rand = new Random();
+            for (int i = 0; i < size; i++)
+            {
+                int x = 0;
+                for (int j = 0; j < PopulationSize; j++)
+                {
+                    if (rand.NextDouble() < Probability) ++x;
+                }
+                samp.Add(x);
+            }
+            return samp;
         }
         #endregion
 

@@ -47,5 +47,6 @@ namespace StatsLibTests
             Assert.AreEqual(_bin.GetMgf(1), Math.Pow(1-0.5+0.5*Math.E, 30));
         }
 
+
     }
 }

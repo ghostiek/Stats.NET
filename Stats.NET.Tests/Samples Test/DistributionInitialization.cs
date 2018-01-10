@@ -118,6 +118,28 @@ namespace Stats.NET.Tests.Samples_Test
             Assert.AreEqual(0, 0);
         }
 
+        [TestMethod]
+        public void Binomial()
+        {
+            var bin = new Binomial(0.3, 9000);
+
+            var sample = bin.GetRandomSample(2000);
+
+            var li = new List<Test>();
+            foreach (var item in sample)
+            {
+                li.Add(new Test(item));
+            }
+
+            using (var wr = new StreamWriter(@"Tables\CSVs\binomialdataset.csv"))
+            {
+                var csv = new CsvWriter(wr);
+                csv.WriteRecords(li);
+            }
+
+            Assert.AreEqual(0, 0);
+        }
+
         public class Test
         {
             public double Num { get; set; }

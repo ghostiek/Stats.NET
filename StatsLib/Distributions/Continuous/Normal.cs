@@ -125,8 +125,6 @@ namespace StatsLib.Distributions.Continuous
         {
             return 1 - GetProbabilityLessThanOrEqual(input);
         }
-
-
         #endregion
     }
 }
