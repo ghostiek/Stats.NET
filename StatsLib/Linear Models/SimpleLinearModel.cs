@@ -2,10 +2,7 @@
 using System.Data;
 using System.Collections.Generic;
 using StatsLib.Tests;
-using StatsLib.Utility;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using StatsLib.Interfaces;
 
 namespace StatsLib.Linear_Models

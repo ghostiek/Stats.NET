@@ -57,6 +57,36 @@ namespace Stats.NET.Tests.Utility_Tests
             CollectionAssert.AreEqual(transpose, test);
         }
 
+        [TestMethod]
+        public void Mult()
+        {
 
+            var arr1 = new double[,]
+            {
+                {5, 1, 7},
+                {9, 20, 12},
+                {1, 0, 9},
+                {1,2,5 }
+            };
+
+            var arr2 = new double[,]
+            {
+                {1, 2, 3, 1},
+                {5, 7, 8, 2},
+                {10, 12, 14, 0}
+            };
+
+            var solution = new double[,]
+            {
+                {80,101,121,7 },
+                {229,302,355,49 },
+                {91, 110,129,1 },
+                {61, 76, 89, 5 }
+            };
+            var test = Matrix.Multiply(arr1, arr2);
+
+            CollectionAssert.AreEqual(solution, test);
+
+        }
     }
 }

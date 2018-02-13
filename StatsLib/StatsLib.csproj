@@ -20,6 +20,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -56,6 +57,7 @@
     <Compile Include="Interfaces\IDistribution.cs" />
     <Compile Include="Interfaces\IGamma.cs" />
     <Compile Include="Interfaces\IGeometric.cs" />
+    <Compile Include="Interfaces\IMultiLinearModel.cs" />
     <Compile Include="Interfaces\IRademacher.cs" />
     <Compile Include="Interfaces\ISimpleLinearModel.cs" />
     <Compile Include="Interfaces\IMode.cs" />

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -66,13 +65,27 @@ namespace StatsLib.Utility
             if (matrixA.GetLength(1) != matrixB.GetLength(0))
                 throw new ArgumentException(
                     "The number of columns of the 1st Matrix is not equal to the number of rows of the 2nd Matrix");
-
+                
             var finalMatrix = new double[matrixA.GetLength(0), matrixB.GetLength(1)];
 
+
+            for(int i = 0; i < matrixA.GetLength(0); ++i)
+            {
+                for(int j = 0; j < matrixB.GetLength(1); ++j)
+                {
+                    for(int k = 0; k < matrixA.GetLength(1); ++k)
+                    {
+                        finalMatrix[i, j] += matrixA[i, k] * matrixB[k, j];
+                    }
+                }
+            }
+
             //Just trying to get a passing build this has not been properly done
-            return matrixA;
+            return finalMatrix;
         }
-
+        public static double[,] Inverse(double[,] matrixA)
+        {
+            throw new NotImplementedException();
+        }
     }
-
 }

@@ -2,24 +2,35 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using StatsLib.Interfaces;
 using StatsLib.Utility;
+using StatsLib.Linear_Models;
+using StatsLib.Tests;
 
 namespace StatsLib.Regression
 {
-    public class MultiLinearModel
+    public class MultiLinearModel : IMultiLinearModel
     {
+        public Coefficients Slopes { get; private set; }
 
-        public double? Intercept { get; private set; }
-        public double? Slope { get; private set; }
-        public List<double?> Residuals { get; private set; }
+        public FTest FStatistic { get; private set; }
 
+        public int DegreeOfFreedom { get; private set; }
+
+        public Residuals Residuals { get; private set; }
+
+        public Func<IEnumerable<double?>, double?> Model { get; private set; }
+
+        public double RSquared { get; private set; }
+
+        public double RSquaredAdjusted { get; private set; }
+
+        public double SumSquaredTotal { get; private set; }
+
+        public double MeanSquaredTotal { get; private set; }
 
         public MultiLinearModel(IEnumerable<DataColumn> independentVariables, DataColumn dependentVariable)
         {
-            //For optimization purposes
-
             //Checks through to see if the columns aren't the same lengths
 
             var dataColumns = independentVariables as IList<DataColumn> ?? independentVariables.ToList();
@@ -27,6 +38,7 @@ namespace StatsLib.Regression
             {
                 throw new ArgumentException("The DataColumns do not have the same length");
             }
+
             //Creating our X Predictor Matrix
             var jaggedX = new double[dataColumns[0].Table.Columns.Count + 1][];
 
@@ -59,14 +71,10 @@ namespace StatsLib.Regression
 
             var xTransposeX = Matrix.Multiply(matrixXTranspose, matrixX);
 
-
-
-
-
+            var inverse = Matrix.Inverse(xTransposeX);
         }
 
-
-
+    
     }
 }
 
