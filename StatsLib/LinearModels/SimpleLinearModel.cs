@@ -5,7 +5,7 @@ using StatsLib.Tests;
 using System.Linq;
 using StatsLib.Interfaces;
 
-namespace StatsLib.Linear_Models
+namespace StatsLib.LinearModels
 {
     public class SimpleLinearModel : ISimpleLinearModel
     {

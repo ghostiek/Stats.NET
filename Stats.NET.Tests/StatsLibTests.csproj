@@ -55,6 +55,7 @@
     <Compile Include="Binomial Tests\BinomialTesting.cs" />
     <Compile Include="Binomial Tests\BernouilliTest.cs" />
     <Compile Include="Intellisense Test\IntellisenseTest.cs" />
+    <Compile Include="Matrix Test\MatrixTest.cs" />
     <Compile Include="Normal Tests\NormalTesting.cs" />
     <Compile Include="Regression Test\MultiLinearTesting.cs" />
     <Compile Include="Regression Test\SimpleLinearModelsTest.cs" />
@@ -66,7 +67,6 @@
     <Compile Include="Utility Tests\MathUtilityTesting.cs" />
     <Compile Include="Table Tests\ChiSquaredTableTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Utility Tests\MatrixUtilityTesting.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

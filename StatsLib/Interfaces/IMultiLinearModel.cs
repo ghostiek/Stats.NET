@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using StatsLib.Linear_Models;
+using StatsLib.LinearModels;
 using StatsLib.Tests;
 
 

@@ -4,10 +4,9 @@ using System.Data;
 using System.Linq;
 using StatsLib.Interfaces;
 using StatsLib.Utility;
-using StatsLib.Linear_Models;
 using StatsLib.Tests;
 
-namespace StatsLib.Regression
+namespace StatsLib.LinearModels
 {
     public class MultiLinearModel : IMultiLinearModel
     {
@@ -65,13 +64,13 @@ namespace StatsLib.Regression
 
             //This may seem inefficient but I would rather have something clear for the user to input. With a 2d array the X and Y values
             //are much clearer than the jagged array we had
-            var matrixX = jaggedX.To2D();
+            //var matrixX = jaggedX.To2D();
 
-            var matrixXTranspose = matrixX.ToTranspose();
+            //var matrixXTranspose = matrixX.ToTranspose();
 
-            var xTransposeX = Matrix.Multiply(matrixXTranspose, matrixX);
+            //var xTransposeX = Matrix.Multiply(matrixXTranspose, matrixX);
 
-            var inverse = Matrix.Inverse(xTransposeX);
+            //var inverse = Matrix.Inverse(xTransposeX);
         }
 
     

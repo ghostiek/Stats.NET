@@ -1,5 +1,5 @@
 ﻿using System;
-using StatsLib.Linear_Models;
+using StatsLib.LinearModels;
 using System.Data;
 using System.Collections.Generic;
 using System.Linq;

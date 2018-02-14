@@ -1,5 +1,5 @@
 ﻿using System;
-using StatsLib.Linear_Models;
+using StatsLib.LinearModels;
 using StatsLib.Tests;
 
 

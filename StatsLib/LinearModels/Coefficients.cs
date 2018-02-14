@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace StatsLib.Linear_Models
+namespace StatsLib.LinearModels
 {
     public class Coefficients
     {
