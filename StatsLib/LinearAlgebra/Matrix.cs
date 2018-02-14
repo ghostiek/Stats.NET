@@ -83,6 +83,43 @@ namespace StatsLib.LinearAlgebra
             return new Matrix(transposed);
         }
 
+        public Matrix Add(Matrix matrix)
+        {
+            if (ListOfRows.Count != matrix.ListOfRows.Count || ListOfRows[0].Count != matrix.ListOfRows[0].Count)
+                throw new ArgumentException(
+                    "The dimmensions of the matrices are not the same");
+
+            var finalMatrix = new double[ListOfRows.Count, ListOfRows[0].Count];
+
+            for (int i = 0; i < ListOfRows.Count; ++i)
+            {
+                for (int j = 0; j < ListOfRows[0].Count; ++j)
+                {
+                    finalMatrix[i, j] = ListOfRows[i][j] + matrix.ListOfRows[i][j];
+                }
+            }
+
+            return new Matrix(finalMatrix);
+        }
+
+        public Matrix Subtract(Matrix matrix)
+        {
+            if (ListOfRows.Count != matrix.ListOfRows.Count || ListOfRows[0].Count != matrix.ListOfRows[0].Count)
+                throw new ArgumentException(
+                    "The dimmensions of the matrices are not the same");
+
+            var finalMatrix = new double[ListOfRows.Count, ListOfRows[0].Count];
+
+            for (int i = 0; i < ListOfRows.Count; ++i)
+            {
+                for (int j = 0; j < ListOfRows[0].Count; ++j)
+                {
+                    finalMatrix[i, j] = ListOfRows[i][j] - matrix.ListOfRows[i][j];
+                }
+            }
+
+            return new Matrix(finalMatrix);
+        }
         public Matrix Multiply(Matrix matrix)
         {
             if (ListOfRows[0].Count != matrix.ListOfRows.Count)
@@ -102,17 +139,18 @@ namespace StatsLib.LinearAlgebra
                     }
                 }
             }
-
-            //Just trying to get a passing build this has not been properly done
             return new Matrix(finalMatrix);
         }
 
-        public static Matrix operator *(Matrix matrixA, Matrix matrixB) => matrixA.Multiply(matrixB);
 
         public Matrix Inverse()
         {
             throw new NotImplementedException();
         }
+
+        public static Matrix operator *(Matrix matrixA, Matrix matrixB) => matrixA.Multiply(matrixB);
+        public static Matrix operator +(Matrix matrixA, Matrix matrixB) => matrixA.Add(matrixB);
+        public static Matrix operator -(Matrix matrixA, Matrix matrixB) => matrixA.Subtract(matrixB);
 
 
     }

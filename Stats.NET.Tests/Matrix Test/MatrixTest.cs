@@ -122,5 +122,53 @@ namespace Stats.NET.Tests.Matrix_Test
                 }
             }
         }
+
+        [TestMethod]
+        public void Add()
+        {
+            var solution = new double[,]
+            {
+                {2,4,6,8,10 },
+                {12,14,16,18,20 },
+                {22,24,26,28,30 },
+            };
+
+            var mat1 = new Matrix(JaggedTestArray);
+            var mat2 = new Matrix(MultiDimTestArray);
+
+            var solutionMat = mat1 + mat2;
+
+            for (int i = 0; i < solution.GetLength(0); ++i)
+            {
+                for (int j = 0; j < solution.GetLength(1); ++j)
+                {
+                    Assert.AreEqual(solutionMat.ListOfRows[i][j], solution[i, j]);
+                }
+            }
+        }
+
+        [TestMethod]
+        public void Subtract()
+        {
+            var solution = new double[,]
+            {
+                {0,0,0,0,0 },
+                {0,0,0,0,0 },
+                {0,0,0,0,0 },
+            };
+
+            var mat1 = new Matrix(JaggedTestArray);
+            var mat2 = new Matrix(MultiDimTestArray);
+
+            var solutionMat = mat1 - mat2;
+
+            for (int i = 0; i < solution.GetLength(0); ++i)
+            {
+                for (int j = 0; j < solution.GetLength(1); ++j)
+                {
+                    Assert.AreEqual(solutionMat.ListOfRows[i][j], solution[i, j]);
+                }
+            }
+        }
     }
 }
