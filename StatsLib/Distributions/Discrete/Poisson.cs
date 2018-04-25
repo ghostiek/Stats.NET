@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace StatsLib.Distributions.Discrete
 {
-    public class Poisson : IDistribution, IProbability, ISpecialGamma
+    public class Poisson : IDiscreteDistribution, IProbability, ISpecialGamma
     {
         #region Property
         /// <inheritdoc />

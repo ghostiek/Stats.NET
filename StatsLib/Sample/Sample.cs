@@ -106,7 +106,7 @@ namespace StatsLib.Samples
         /// </summary>
         /// <param name="otherSamp"></param>
         /// <returns></returns>
-        public Sample Union(Sample otherSamp) => new Sample(Values.Union(otherSamp.Values));
+        public ISample Union(ISample otherSamp) => new Sample(Values.Union(otherSamp.Values));
 
         /// <summary>
         /// Union Operator
@@ -114,14 +114,14 @@ namespace StatsLib.Samples
         /// <param name="A"></param>
         /// <param name="B"></param>
         /// <returns></returns>
-        public static Sample operator |(Sample A, Sample B) => A.Union(B);
+        public static ISample operator |(ISample A, Sample B) => A.Union(B);
 
         /// <summary>
         /// Returns the Intersect of 2 Samples
         /// </summary>
         /// <param name="otherSamp"></param>
         /// <returns></returns>
-        public Sample Intersect(Sample otherSamp) => new Sample(Values.Intersect(otherSamp.Values));
+        public ISample Intersect(ISample otherSamp) => new Sample(Values.Intersect(otherSamp.Values));
 
         /// <summary>
         /// Interesect Operator 
@@ -129,14 +129,14 @@ namespace StatsLib.Samples
         /// <param name="A"></param>
         /// <param name="B"></param>
         /// <returns></returns>
-        public static Sample operator &(Sample A, Sample B) => A.Intersect(B);
+        public static ISample operator &(Sample A, ISample B) => A.Intersect((Sample)B);
 
         /// <summary>
         /// Adds two Samples
         /// </summary>
         /// <param name="otherSamp"></param>
         /// <returns></returns>
-        public Sample Add(Sample otherSamp)
+        public ISample Add(ISample otherSamp)
         {
             var placeholder = new List<double>(Values);
             placeholder.AddRange(otherSamp.Values);
@@ -149,14 +149,14 @@ namespace StatsLib.Samples
         /// <param name="A"></param>
         /// <param name="B"></param>
         /// <returns></returns>
-        public static Sample operator +(Sample A, Sample B) => A.Add(B);
+        public static ISample operator +(ISample A, Sample B) => A.Add(B);
 
         /// <summary>
         /// Removes all elements that are in common and returns a new Sample
         /// </summary>
         /// <param name="otherSamp"></param>
         /// <returns></returns>
-        public Sample Subtract(Sample otherSamp)
+        public ISample Subtract(ISample otherSamp)
         {
             var placeholder = new List<double>(Values);
             foreach (var val in otherSamp.Values)
@@ -172,7 +172,7 @@ namespace StatsLib.Samples
         /// <param name="A"></param>
         /// <param name="B"></param>
         /// <returns></returns>
-        public static Sample operator -(Sample A, Sample B) => A.Subtract(B);
+        public static ISample operator -(ISample A, Sample B) => A.Subtract(B);
 
 
 

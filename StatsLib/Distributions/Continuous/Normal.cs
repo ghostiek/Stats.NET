@@ -5,7 +5,7 @@ using StatsLib.Utility;
 
 namespace StatsLib.Distributions.Continuous
 {
-    public class Normal : IDistribution, IProbability, INormal
+    public class Normal : IContinuousDistribution, IProbability, INormal
     {
         #region Properties and Backing Field
         private double _sigma;

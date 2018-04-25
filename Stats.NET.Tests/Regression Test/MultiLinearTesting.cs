@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Data;
 using StatsLib.LinearModels;
-using System.Security.Cryptography.X509Certificates;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Stats.NET.Tests.Regression_Test

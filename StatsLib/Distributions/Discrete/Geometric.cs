@@ -4,7 +4,7 @@ using StatsLib.Interfaces;
 
 namespace StatsLib.Distributions.Discrete
 {
-    public class Geometric : IDistribution, IProbability, IGeometric
+    public class Geometric : IDiscreteDistribution, IProbability, IGeometric
     {
         #region Property and Backing Field
         private double _probability;

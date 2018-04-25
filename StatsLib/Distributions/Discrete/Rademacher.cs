@@ -4,7 +4,7 @@ using StatsLib.Interfaces;
 
 namespace StatsLib.Distributions.Discrete
 {
-    public class Rademacher : IRademacher, IDistribution, IProbability
+    public class Rademacher : IRademacher, IDiscreteDistribution, IProbability
     {
         public const double Probability = 0.5;
 

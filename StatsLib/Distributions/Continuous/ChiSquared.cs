@@ -9,7 +9,7 @@ using System.Collections.Generic;
 
 namespace StatsLib.Distributions.Continuous
 {
-    public class ChiSquared : IDistribution, IProbability, IChiSquared
+    public class ChiSquared : IContinuousDistribution, IProbability, IChiSquared
     {
         #region Properties and Backing Field
 

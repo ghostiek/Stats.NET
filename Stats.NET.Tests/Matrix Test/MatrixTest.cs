@@ -36,9 +36,9 @@ namespace Stats.NET.Tests.Matrix_Test
         {
             var matrix = new Matrix(JaggedTestArray);
 
-            for(int i = 0; i < JaggedTestArray.GetLength(0); ++i)
+            for (int i = 0; i < JaggedTestArray.GetLength(0); ++i)
             {
-                for(int j = 0; j < JaggedTestArray[0].Length; ++j)
+                for (int j = 0; j < JaggedTestArray[0].Length; ++j)
                 {
                     Assert.AreEqual(matrix.ListOfRows[i][j], JaggedTestArray[i][j]);
                 }
@@ -54,7 +54,7 @@ namespace Stats.NET.Tests.Matrix_Test
             {
                 for (int j = 0; j < MultiDimTestArray.GetLength(1); ++j)
                 {
-                    Assert.AreEqual(matrix.ListOfRows[i][j], MultiDimTestArray[i,j]);
+                    Assert.AreEqual(matrix.ListOfRows[i][j], MultiDimTestArray[i, j]);
                 }
             }
         }
@@ -77,7 +77,7 @@ namespace Stats.NET.Tests.Matrix_Test
             {
                 for (int j = 0; j < JaggedTestArray.GetLength(0); ++j)
                 {
-                    Assert.AreEqual(transposedMatrix.ListOfRows[i][j], transpose[i,j]);
+                    Assert.AreEqual(transposedMatrix.ListOfRows[i][j], transpose[i, j]);
                 }
             }
         }
@@ -167,6 +167,30 @@ namespace Stats.NET.Tests.Matrix_Test
                 for (int j = 0; j < solution.GetLength(1); ++j)
                 {
                     Assert.AreEqual(solutionMat.ListOfRows[i][j], solution[i, j]);
+                }
+            }
+        }
+
+        [TestMethod]
+        public void ColumnBind()
+        {
+            var solution = new double[,]
+            {
+                {1,2,3,4,5,1,2,3,4,5 },
+                {6, 7, 8, 9, 10, 6, 7, 8, 9, 10 },
+                {11, 12, 13, 14, 15, 11, 12, 13, 14, 15 },
+            };
+
+            var mat1 = new Matrix(JaggedTestArray);
+            var mat2 = new Matrix(MultiDimTestArray);
+
+            var testMatrix = mat1.ColumnBind(mat2);
+
+            for (int i = 0; i < solution.GetLength(0); ++i)
+            {
+                for (int j = 0; j < solution.GetLength(1); ++j)
+                {
+                    Assert.AreEqual(testMatrix.ListOfRows[i][j], solution[i, j]);
                 }
             }
         }

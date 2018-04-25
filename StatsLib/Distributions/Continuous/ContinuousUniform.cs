@@ -7,7 +7,7 @@ using StatsLib.Utility;
 namespace StatsLib.Distributions.Continuous
 {
 
-    public class ContinuousUniform : IDistribution, IProbability, IUniform
+    public class ContinuousUniform : IContinuousDistribution, IProbability, IUniform
     {
         #region Properties and Backing Field
         private double _upperBound;

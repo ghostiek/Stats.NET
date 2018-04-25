@@ -1,12 +1,14 @@
 ﻿using StatsLib.Samples;
+using System.Collections.Generic;
 
 namespace StatsLib.Interfaces
 {
     public interface ISample
     {
-        Sample Union(Sample otherSamp);
-        Sample Intersect(Sample otherSamp);
-        Sample Add(Sample otherSamp);
-        Sample Subtract(Sample otherSamp);
+        List<double> Values { get; }
+        ISample Union(ISample otherSamp);
+        ISample Intersect(ISample otherSamp);
+        ISample Add(ISample otherSamp);
+        ISample Subtract(ISample otherSamp);
     }
 }

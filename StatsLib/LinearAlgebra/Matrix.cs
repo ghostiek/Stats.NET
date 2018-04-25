@@ -120,6 +120,7 @@ namespace StatsLib.LinearAlgebra
 
             return new Matrix(finalMatrix);
         }
+
         public Matrix Multiply(Matrix matrix)
         {
             if (ListOfRows[0].Count != matrix.ListOfRows.Count)
@@ -142,8 +143,37 @@ namespace StatsLib.LinearAlgebra
             return new Matrix(finalMatrix);
         }
 
-
         public Matrix Inverse()
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// Binds a matrix by column to the right
+        /// </summary>
+        /// <param name="rightMatrix"></param>
+        /// <returns></returns>
+        public Matrix ColumnBind(Matrix rightMatrix)
+        {
+            if(ListOfRows.Count != rightMatrix.ListOfRows.Count)
+            {
+                throw new ArgumentException("Matrices do not have the same number of Rows");
+            }
+
+            var finalList = new List<List<double>>();
+            for(int i = 0; i < ListOfRows.Count; ++i)
+            {
+                finalList.Add(ListOfRows[i].Concat(rightMatrix.ListOfRows[i]).ToList());
+            }
+            return new Matrix(finalList);
+        }
+
+        /// <summary>
+        /// Binds a matrix by row, under the matrix making the call
+        /// </summary>
+        /// <param name="underMatrix"></param>
+        /// <returns></returns>
+        public Matrix RowBind(Matrix underMatrix)
         {
             throw new NotImplementedException();
         }
@@ -151,7 +181,5 @@ namespace StatsLib.LinearAlgebra
         public static Matrix operator *(Matrix matrixA, Matrix matrixB) => matrixA.Multiply(matrixB);
         public static Matrix operator +(Matrix matrixA, Matrix matrixB) => matrixA.Add(matrixB);
         public static Matrix operator -(Matrix matrixA, Matrix matrixB) => matrixA.Subtract(matrixB);
-
-
     }
 }

@@ -7,7 +7,7 @@ using StatsLib.Interfaces;
 
 namespace StatsLib.Distributions.Continuous
 {
-    public class Beta : IBeta, IDistribution, IProbability
+    public class Beta : IBeta, IContinuousDistribution, IProbability
     {
         private double _a;
         private double _b;

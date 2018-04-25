@@ -7,7 +7,7 @@ using StatsLib.Interfaces;
 
 namespace StatsLib.Distributions.Discrete
 {
-    public class DiscreteUniform : IDiscreteUniform, IDistribution, IProbability
+    public class DiscreteUniform : IDiscreteUniform, IDiscreteDistribution, IProbability
     {
         public int LowerBound { get; private set; }
         public int UpperBound { get; private set; }

@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace StatsLib.Distributions.Discrete
 {
-    public class NegativeBinomial : IDistribution, IProbability, INegativeBinomial
+    public class NegativeBinomial : IDiscreteDistribution, IProbability, INegativeBinomial
     {
         #region Properties and Backing Field
         private double _probability;

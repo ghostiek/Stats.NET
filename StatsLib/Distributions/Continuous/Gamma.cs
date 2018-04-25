@@ -4,7 +4,7 @@ using StatsLib.Interfaces;
 
 namespace StatsLib.Distributions.Continuous
 {
-    public class Gamma : IDistribution, IProbability, IGamma
+    public class Gamma : IContinuousDistribution, IProbability, IGamma
     {
         #region Properties and Backing fields
         private double _alpha;

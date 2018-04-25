@@ -9,8 +9,9 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>StatsLib</RootNamespace>
     <AssemblyName>StatsLib</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -53,6 +54,8 @@
     <Compile Include="Distributions\Discrete\Rademacher.cs" />
     <Compile Include="Interfaces\IBeta.cs" />
     <Compile Include="Interfaces\IBinomial.cs" />
+    <Compile Include="Interfaces\IContinuousDistribution.cs" />
+    <Compile Include="Interfaces\IDiscreteDistribution.cs" />
     <Compile Include="Interfaces\IDIscreteUniform.cs" />
     <Compile Include="Interfaces\IDistribution.cs" />
     <Compile Include="Interfaces\IGamma.cs" />
@@ -84,6 +87,7 @@
     <Compile Include="Interfaces\IChiSquared.cs" />
     <Compile Include="Mapping\ChiSquaredTableMap.cs" />
     <Compile Include="Tests\FTest.cs" />
+    <Compile Include="Tests\KSTest.cs" />
     <Compile Include="Tests\TTest.cs" />
     <Compile Include="Utility\ConfidenceInterval.cs" />
     <Compile Include="Utility\Calculate.cs" />

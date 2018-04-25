@@ -4,7 +4,7 @@ using StatsLib.Interfaces;
 
 namespace StatsLib.Distributions.Continuous
 {
-    public class Exponential : IDistribution, IProbability, ISpecialGamma
+    public class Exponential : IContinuousDistribution, IProbability, ISpecialGamma
     {
         #region Property and Backing Field
         private double _lambda;
