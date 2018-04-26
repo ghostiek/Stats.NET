@@ -175,7 +175,14 @@ namespace StatsLib.LinearAlgebra
         /// <returns></returns>
         public Matrix RowBind(Matrix underMatrix)
         {
-            throw new NotImplementedException();
+            if (ListOfRows[0].Count != underMatrix.ListOfRows[0].Count)
+            {
+                throw new ArgumentException("Matrices do not have the same number of Columns");
+            }
+
+            var finalList = ListOfRows.Concat(underMatrix.ListOfRows).ToList();
+
+            return new Matrix(finalList);
         }
 
         public static Matrix operator *(Matrix matrixA, Matrix matrixB) => matrixA.Multiply(matrixB);

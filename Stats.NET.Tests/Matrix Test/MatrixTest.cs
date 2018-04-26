@@ -194,5 +194,32 @@ namespace Stats.NET.Tests.Matrix_Test
                 }
             }
         }
+
+        [TestMethod]
+        public void RowBind()
+        {
+            var solution = new double[,]
+            {
+                {1,2,3,4,5 },
+                {6, 7, 8, 9, 10 },
+                {11, 12, 13, 14, 15 },
+                {1,2,3,4,5 },
+                {6, 7, 8, 9, 10 },
+                {11, 12, 13, 14, 15 }
+            };
+
+            var mat1 = new Matrix(JaggedTestArray);
+            var mat2 = new Matrix(MultiDimTestArray);
+
+            var testMatrix = mat1.RowBind(mat2);
+
+            for (int i = 0; i < solution.GetLength(0); ++i)
+            {
+                for (int j = 0; j < solution.GetLength(1); ++j)
+                {
+                    Assert.AreEqual(testMatrix.ListOfRows[i][j], solution[i, j]);
+                }
+            }
+        }
     }
 }
