@@ -10,6 +10,7 @@ namespace StatsLib.LinearAlgebra
     {
         public List<List<double>> ListOfRows { get; private set; }
 
+        #region Constructors
         public Matrix(double[][] source)
         {
             ListOfRows = new List<List<double>>();
@@ -47,6 +48,7 @@ namespace StatsLib.LinearAlgebra
                     throw new InvalidOperationException("The given List of List<double> is not rectangular.");
             }
         }
+        #endregion
 
         public Matrix ToTranspose()
         {
@@ -145,6 +147,11 @@ namespace StatsLib.LinearAlgebra
 
         public Matrix Inverse()
         {
+            if(ListOfRows.Any(x => x.Count != ListOfRows.Count))
+            {
+                throw new InvalidOperationException("Matrix is not square");
+            }
+
             throw new NotImplementedException();
         }
 
@@ -185,8 +192,72 @@ namespace StatsLib.LinearAlgebra
             return new Matrix(finalList);
         }
 
+        /// <summary>
+        /// Returns the shape of the Matrix
+        /// </summary>
+        /// <returns></returns>
+        public (int Row,int Column) GetShape()
+        {
+            return (Row: ListOfRows[0].Count, Column: ListOfRows.Count);
+        }
+
+        public Matrix RowReduce()
+        {
+            var tempMatrix = new Matrix(ListOfRows);
+            //This just finds the first entry (by column) with a non-zero entry
+            double? pivot = null;
+            int rowIndex = -1;
+            int colIndex = 0;
+            while(pivot is null)
+            {
+                ++rowIndex;
+                if (rowIndex == ListOfRows.Count)
+                {
+                    colIndex++;
+                    rowIndex = 0;
+                }
+                var value = tempMatrix.ListOfRows[rowIndex][colIndex];
+                pivot = value != 0 ? (double?)value : null;
+            }
+
+            //Pivot Row is rowIndex
+            //Put pivot row to the top
+
+            throw new NotImplementedException();
+
+        }
+
+        public override bool Equals(object obj)
+        {
+            var item = obj as Matrix;
+
+            if (item is null)
+            {
+                return false;
+            }
+
+            for(int i = 0; i < ListOfRows.Count; ++i)
+            {
+                if (!ListOfRows[i].SequenceEqual(item.ListOfRows[i]))
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
+
+        #region Operators
         public static Matrix operator *(Matrix matrixA, Matrix matrixB) => matrixA.Multiply(matrixB);
         public static Matrix operator +(Matrix matrixA, Matrix matrixB) => matrixA.Add(matrixB);
         public static Matrix operator -(Matrix matrixA, Matrix matrixB) => matrixA.Subtract(matrixB);
+        public static bool operator ==(Matrix matrixA, Matrix matrixB) => matrixA.Equals(matrixB);
+        public static bool operator !=(Matrix matrixA, Matrix matrixB) => !matrixA.Equals(matrixB);
+        #endregion
     }
 }

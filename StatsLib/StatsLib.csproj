@@ -60,6 +60,7 @@
     <Compile Include="Interfaces\IDistribution.cs" />
     <Compile Include="Interfaces\IGamma.cs" />
     <Compile Include="Interfaces\IGeometric.cs" />
+    <Compile Include="Interfaces\IHypergeometric.cs" />
     <Compile Include="Interfaces\IMultiLinearModel.cs" />
     <Compile Include="Interfaces\IRademacher.cs" />
     <Compile Include="Interfaces\ISimpleLinearModel.cs" />
@@ -81,7 +82,7 @@
     <Compile Include="Distributions\Discrete\Geometric.cs" />
     <Compile Include="Distributions\Continuous\Exponential.cs" />
     <Compile Include="Distributions\Continuous\Gamma.cs" />
-    <Compile Include="Hypergeometric.cs" />
+    <Compile Include="Distributions\Discrete\Hypergeometric.cs" />
     <Compile Include="Distributions\Discrete\NegativeBinomial.cs" />
     <Compile Include="Distributions\Continuous\ContinuousUniform.cs" />
     <Compile Include="Interfaces\IChiSquared.cs" />

@@ -221,5 +221,16 @@ namespace Stats.NET.Tests.Matrix_Test
                 }
             }
         }
+
+        [TestMethod]
+        public void Equals()
+        {
+            var mat1 = new Matrix(JaggedTestArray);
+            var mat2 = new Matrix(MultiDimTestArray);
+
+            var result = mat1 == mat2;
+
+            Assert.AreEqual(true, result);
+        }
     }
 }
