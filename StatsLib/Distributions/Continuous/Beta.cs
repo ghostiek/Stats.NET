@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using StatsLib.Utility;
 using StatsLib.Interfaces;
 
 namespace StatsLib.Distributions.Continuous
@@ -45,7 +43,9 @@ namespace StatsLib.Distributions.Continuous
 
         public double GetMgf(double t)
         {
-            throw new NotImplementedException();
+            //No point in having k exceed 171 since 170! results into infinity making the rest of the equation 0.
+            return 1 + Calculate.SequenceSummation(1, 171, 
+                k => Calculate.SequenceProduct(0, k - 1, r => (A + r) / (A + B + r)) * Math.Pow(t, k) / k.Factorial());
         }
 
         public double GetPdf(double x)

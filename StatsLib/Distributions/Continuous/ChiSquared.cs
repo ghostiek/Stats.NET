@@ -6,6 +6,7 @@ using StatsLib.Interfaces;
 using StatsLib.Mapping;
 using StatsLib.Tables.Classes;
 using System.Collections.Generic;
+using StatsLib.Utility;
 
 namespace StatsLib.Distributions.Continuous
 {
@@ -60,7 +61,9 @@ namespace StatsLib.Distributions.Continuous
 
         public double GetPdf(double x)
         {
-            throw new NotImplementedException();
+            var numerator = Math.Pow(x, PopulationSize / 2 - 1) * Math.Exp(-x / 2);
+            var denominator = Math.Pow(2, PopulationSize / 2) * ((double)PopulationSize / 2 - 1).Factorial();
+            return numerator / denominator;
         }
 
         public double GetCdf(double x)

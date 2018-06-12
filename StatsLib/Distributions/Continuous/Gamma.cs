@@ -1,4 +1,5 @@
 ﻿using System;
+using StatsLib.Utility;
 using System.Collections.Generic;
 using StatsLib.Interfaces;
 
@@ -54,13 +55,10 @@ namespace StatsLib.Distributions.Continuous
         public double GetVariance() => Alpha * Beta * Beta;
 
         public double GetMgf(double t) => 1 / Math.Pow(1 - t / Beta, Alpha);
-
+            
         public double GetMode() => (Alpha - 1) / Beta;
 
-        public double GetPdf(double x)
-        {
-            throw new NotImplementedException();
-        }
+        public double GetPdf(double x) => Math.Pow(Beta, Alpha) * Math.Pow(x, Alpha - 1) * Math.Exp(-Beta * x) / (Alpha - 1).Factorial();
 
         public double GetCdf(double x)
         {
